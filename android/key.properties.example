@@ -1,0 +1,5 @@
+# Replace these values with your actual keystore information
+storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=YOUR_KEY_ALIAS
+storeFile=../path/to/your/keystore.jks
