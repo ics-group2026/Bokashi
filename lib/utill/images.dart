@@ -1,14 +1,14 @@
 
 class Images {
-  static const String splashLogo = 'assets/images/logo_splash.png';
+  static const String splashLogo = 'assets/images/logo.png';
   static const String moreFilledImage = 'assets/images/more_filled.png';
   static const String cartArrowDownImage = 'assets/images/cart_arrow_down.png';
   static const String cartImage = 'assets/images/cart.png';
   static const String homeImage = 'assets/images/home.png';
   static const String officeImage = 'assets/images/office.png';
   static const String logoImage = 'assets/images/logo.png';
-  static const String logoWithNameImage = 'assets/images/logo_with_name.png';
-  static const String logoWithNameImageWhite = 'assets/images/logo_with_name_white.png';
+  static const String logoWithNameImage = 'assets/images/logo.png';
+  static const String logoWithNameImageWhite = 'assets/images/logo.png';
   static const String messageImage = 'assets/images/inbox.png';
   static const String moreImage = 'assets/images/more.png';
   static const String shoppingImage = 'assets/images/order.png';
@@ -69,7 +69,7 @@ class Images {
   static const String smsIcon  = 'assets/images/sms_icon.png';
   static const String searchIcon = 'assets/images/search.png';
   static const String search = 'assets/images/search.png';
-  static const String splashScreenLogo = 'assets/images/logo_with_name_white.png';
+  static const String splashScreenLogo = 'assets/images/logo.png';
   static const String cPolicy = 'assets/images/c_policy.png';
   static const String returnPolicy = 'assets/images/return_policy.png';
   static const String refundPolicy = 'assets/images/refund_policy.png';
