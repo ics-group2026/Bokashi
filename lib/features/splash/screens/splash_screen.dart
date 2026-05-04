@@ -1,5 +1,4 @@
-﻿import 'dart:io';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:bokashi/common/basewidget/bouncy_widget.dart';
 import 'package:bokashi/features/splash/controllers/splash_controller.dart';
 import 'package:bokashi/features/splash/domain/models/config_model.dart';
@@ -67,26 +66,13 @@ class SplashScreenState extends State<SplashScreen> {
     NetworkInfo.checkConnectivity(context);
     Provider.of<SplashController>(context, listen: false).initConfig(context,
         (ConfigModel? configModel) {
-      String? minimumVersion = "0";
-      UserAppVersionControl? appVersion =
-          Provider.of<SplashController>(Get.context!, listen: false)
-              .configModel
-              ?.userAppVersionControl;
-      if (Platform.isAndroid) {
-        minimumVersion = appVersion?.forAndroid?.version ?? '0';
-      } else if (Platform.isIOS) {
-        minimumVersion = appVersion?.forIos?.version ?? '0';
-      }
       Provider.of<SplashController>(Get.context!, listen: false)
           .initSharedPrefData();
-      // Timer(const Duration(seconds: 2), () {
       final config = Provider.of<SplashController>(Get.context!, listen: false)
           .configModel;
 
       Future.delayed(const Duration(milliseconds: 0)).then((_) {
-        if (compareVersions(minimumVersion!, AppConstants.appVersion) == 1) {
-          RouterHelper.getUpdateRoute(action: RouteAction.pushReplacement);
-        } else if (config?.maintenanceModeData?.maintenanceStatus == 1 &&
+        if (config?.maintenanceModeData?.maintenanceStatus == 1 &&
             config?.maintenanceModeData?.selectedMaintenanceSystem
                     ?.customerApp ==
                 1 &&
@@ -185,24 +171,11 @@ class SplashScreenState extends State<SplashScreen> {
       });
       //  });
     }, (ConfigModel? configModel) {
-      String? minimumVersion = "0";
-      UserAppVersionControl? appVersion =
-          Provider.of<SplashController>(Get.context!, listen: false)
-              .configModel
-              ?.userAppVersionControl;
-      if (Platform.isAndroid) {
-        minimumVersion = appVersion?.forAndroid?.version ?? '0';
-      } else if (Platform.isIOS) {
-        minimumVersion = appVersion?.forIos?.version ?? '0';
-      }
       Provider.of<SplashController>(Get.context!, listen: false)
           .initSharedPrefData();
-      // Timer(const Duration(seconds: 1), () {
       final config = Provider.of<SplashController>(Get.context!, listen: false)
           .configModel;
-      if (compareVersions(minimumVersion, AppConstants.appVersion) == 1) {
-        RouterHelper.getUpdateRoute(action: RouteAction.pushReplacement);
-      } else if (config?.maintenanceModeData?.maintenanceStatus == 1 &&
+      if (config?.maintenanceModeData?.maintenanceStatus == 1 &&
           config?.maintenanceModeData?.selectedMaintenanceSystem?.customerApp ==
               1 &&
           !config!.localMaintenanceMode!) {
@@ -283,27 +256,6 @@ class SplashScreenState extends State<SplashScreen> {
     }).then((bool isSuccess) {
       if (isSuccess) {}
     });
-  }
-
-  int compareVersions(String version1, String version2) {
-    List<String> v1Components = version1.split('.');
-    List<String> v2Components = version2.split('.');
-
-    int maxLength = v1Components.length > v2Components.length
-        ? v1Components.length
-        : v2Components.length;
-
-    for (int i = 0; i < maxLength; i++) {
-      int v1Part =
-          i < v1Components.length ? int.tryParse(v1Components[i]) ?? 0 : 0;
-      int v2Part =
-          i < v2Components.length ? int.tryParse(v2Components[i]) ?? 0 : 0;
-
-      if (v1Part > v2Part) return 1;
-      if (v1Part < v2Part) return -1;
-    }
-
-    return 0;
   }
 
   @override
