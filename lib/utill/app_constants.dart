@@ -5,7 +5,7 @@ import 'package:bokashi/utill/images.dart';
 class AppConstants {
   static const String appName = 'Bokashi';
   static const String slogan = 'Bokashi';
-  static const String appVersion = '1.0.2';
+  static const String appVersion = '1.0.3';
 
   ///Flutter SDK 3.38.1
   static const LocalCachesTypeEnum cachesType = LocalCachesTypeEnum.all;
