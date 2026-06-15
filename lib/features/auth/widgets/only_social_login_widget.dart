@@ -1,13 +1,12 @@
-﻿import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:bokashi/common/basewidget/custom_asset_image_widget.dart';
 import 'package:bokashi/common/basewidget/show_custom_snakbar_widget.dart';
 import 'package:bokashi/features/auth/controllers/auth_controller.dart';
 import 'package:bokashi/features/auth/controllers/google_login_controller.dart';
 import 'package:bokashi/features/auth/widgets/existing_account_bottom_sheet.dart';
-import 'package:bokashi/features/auth/widgets/social_login_widget.dart';
+// import 'package:bokashi/features/auth/widgets/social_login_widget.dart'; // Social login disabled
 import 'package:bokashi/features/profile/domain/models/profile_model.dart';
-import 'package:bokashi/features/splash/domain/models/config_model.dart';
+// import 'package:bokashi/features/splash/domain/models/config_model.dart'; // Social login disabled
 import 'package:bokashi/helper/responsive_helper.dart';
 import 'package:bokashi/helper/route_healper.dart';
 import 'package:bokashi/localization/language_constrants.dart';
@@ -62,11 +61,12 @@ class _OnlySocialLoginWidgetState extends State<OnlySocialLoginWidget> {
     final double width = MediaQuery.of(context).size.width;
     final Size size = MediaQuery.of(context).size;
 
-    final socialLogin = SocialMediaLoginOptions(
-      facebook: 1,
-      google: 1,
-      apple: 1
-    );
+    // Social login disabled
+    // final socialLogin = SocialMediaLoginOptions(
+    //   facebook: 1,
+    //   google: 1,
+    //   apple: 1
+    // );
 
     return PopScope(
       canPop: false,
@@ -124,48 +124,49 @@ class _OnlySocialLoginWidgetState extends State<OnlySocialLoginWidget> {
                 ),
                 const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
-                if(socialLogin.google == 1)...[
-                  Row(children: [
-
-                    Expanded(child: Container()),
-
-                    Expanded(flex: 4,
-                      child: Consumer<AuthController>(
-                          builder: (context, authProvider, child) {
-                            return InkWell(
-                              onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).hintColor.withValues(alpha:0.08),
-                                  borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                                  border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha:0.1)),
-                                ),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-
-                                  Image.asset(Images.google,
-                                    height: ResponsiveHelper.isTab(context) ? 20 : 15,
-                                    width: ResponsiveHelper.isTab(context) ? 20 : 15,
-                                  ),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-                                  Text(getTranslated("continue_with_google", context)!, style: robotoBold.copyWith(
-                                    fontSize: Dimensions.fontSizeDefault,
-                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                  ),),
-
-                                ],),
-                              ),
-                            );
-                          }
-                      ),
-                    ),
-
-                    Expanded(child: Container()),
-
-                  ]),
-                  const SizedBox(height: Dimensions.paddingSizeLarge),
-                ],
+                // Google login disabled
+                // if(socialLogin.google == 1)...[
+                //   Row(children: [
+                //
+                //     Expanded(child: Container()),
+                //
+                //     Expanded(flex: 4,
+                //       child: Consumer<AuthController>(
+                //           builder: (context, authProvider, child) {
+                //             return InkWell(
+                //               onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
+                //               child: Container(
+                //                 padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
+                //                 decoration: BoxDecoration(
+                //                   color: Theme.of(context).hintColor.withValues(alpha:0.08),
+                //                   borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                //                   border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha:0.1)),
+                //                 ),
+                //                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                //
+                //                   Image.asset(Images.google,
+                //                     height: ResponsiveHelper.isTab(context) ? 20 : 15,
+                //                     width: ResponsiveHelper.isTab(context) ? 20 : 15,
+                //                   ),
+                //                   const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                //
+                //                   Text(getTranslated("continue_with_google", context)!, style: robotoBold.copyWith(
+                //                     fontSize: Dimensions.fontSizeDefault,
+                //                     color: Theme.of(context).textTheme.bodyMedium?.color,
+                //                   ),),
+                //
+                //                 ],),
+                //               ),
+                //             );
+                //           }
+                //       ),
+                //     ),
+                //
+                //     Expanded(child: Container()),
+                //
+                //   ]),
+                //   const SizedBox(height: Dimensions.paddingSizeLarge),
+                // ],
 
                 // Facebook login disabled
                 // if(socialLogin.facebook == 1)...[
@@ -210,50 +211,51 @@ class _OnlySocialLoginWidgetState extends State<OnlySocialLoginWidget> {
                 //   const SizedBox(height: Dimensions.paddingSizeLarge),
                 // ],
 
-                if(socialLogin.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)...[
-                  Row(children: [
-
-                    Expanded(child: Container()),
-
-                    Expanded(flex: 4,
-                      child: Consumer<AuthController>(
-                          builder: (context, authProvider, child) {
-                            return InkWell(
-                              onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).hintColor.withValues(alpha:0.08),
-                                  borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                                  border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha:0.1)),
-                                ),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-
-                                  Image.asset(
-                                    Images.appleLogo, color: Theme.of(context).textTheme.bodyMedium?.color,
-                                    height: ResponsiveHelper.isTab(context) ? 20 : 15,
-                                    width: ResponsiveHelper.isTab(context) ? 20 : 15,
-                                  ),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-
-                                  Text(getTranslated("continue_with_apple", context)!, style: robotoBold.copyWith(
-                                    fontSize: Dimensions.fontSizeDefault,
-                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                  )),
-
-                                ],),
-                              ),
-                            );
-                          }
-                      ),
-                    ),
-
-                    Expanded(child: Container()),
-
-                  ]),
-                  const SizedBox(height: Dimensions.paddingSizeLarge),
-                ],
+                // Apple login disabled
+                // if(socialLogin.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)...[
+                //   Row(children: [
+                //
+                //     Expanded(child: Container()),
+                //
+                //     Expanded(flex: 4,
+                //       child: Consumer<AuthController>(
+                //           builder: (context, authProvider, child) {
+                //             return InkWell(
+                //               onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
+                //               child: Container(
+                //                 padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
+                //                 decoration: BoxDecoration(
+                //                   color: Theme.of(context).hintColor.withValues(alpha:0.08),
+                //                   borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                //                   border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha:0.1)),
+                //                 ),
+                //                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                //
+                //                   Image.asset(
+                //                     Images.appleLogo, color: Theme.of(context).textTheme.bodyMedium?.color,
+                //                     height: ResponsiveHelper.isTab(context) ? 20 : 15,
+                //                     width: ResponsiveHelper.isTab(context) ? 20 : 15,
+                //                   ),
+                //                   const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                //
+                //
+                //                   Text(getTranslated("continue_with_apple", context)!, style: robotoBold.copyWith(
+                //                     fontSize: Dimensions.fontSizeDefault,
+                //                     color: Theme.of(context).textTheme.bodyMedium?.color,
+                //                   )),
+                //
+                //                 ],),
+                //               ),
+                //             );
+                //           }
+                //       ),
+                //     ),
+                //
+                //     Expanded(child: Container()),
+                //
+                //   ]),
+                //   const SizedBox(height: Dimensions.paddingSizeLarge),
+                // ],
 
 
                 Padding(

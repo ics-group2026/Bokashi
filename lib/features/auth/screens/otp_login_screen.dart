@@ -7,7 +7,7 @@ import 'package:bokashi/common/basewidget/custom_textfield_widget.dart';
 import 'package:bokashi/common/basewidget/show_custom_snakbar_widget.dart';
 import 'package:bokashi/features/auth/controllers/auth_controller.dart';
 import 'package:bokashi/features/auth/enums/from_page.dart';
-import 'package:bokashi/features/auth/widgets/social_login_widget.dart';
+// import 'package:bokashi/features/auth/widgets/social_login_widget.dart'; // Social login disabled
 import 'package:bokashi/features/splash/controllers/splash_controller.dart';
 import 'package:bokashi/features/splash/domain/models/config_model.dart';
 import 'package:bokashi/helper/route_healper.dart';
@@ -48,7 +48,8 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
     final double width = MediaQuery.of(context).size.width;
     final Size size = MediaQuery.of(context).size;
     final ConfigModel configModel = Provider.of<SplashController>(context, listen: false).configModel!;
-    final SocialMediaLoginOptions? socialStatus = configModel.customerLogin?.socialMediaLoginOptions;
+    // Social login disabled
+    // final SocialMediaLoginOptions? socialStatus = configModel.customerLogin?.socialMediaLoginOptions;
 
     return PopScope(
       canPop: false,
@@ -199,20 +200,20 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
                             ]),
 
 
-                            if(_isShowSocialLoginButton(configModel, socialStatus))...[
-                              Center(child: Text(
-                                getTranslated('or', context)!,
-                                style: titilliumRegular.copyWith(
-                                  fontSize: Dimensions.fontSizeDefault,
-                                  color: Theme.of(context).hintColor,
-                                ),
-                              ),
-                              ),
-                              const SizedBox(height: Dimensions.paddingSizeDefault),
-
-                              Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge) ,child: SocialLoginWidget(fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
-                              const SizedBox(height: Dimensions.paddingSizeLarge),
-                            ],
+                            // Social login (Google, Apple, Facebook) disabled
+                            // if(_isShowSocialLoginButton(configModel, socialStatus))...[
+                            //   Center(child: Text(
+                            //     getTranslated('or', context)!,
+                            //     style: titilliumRegular.copyWith(
+                            //       fontSize: Dimensions.fontSizeDefault,
+                            //       color: Theme.of(context).hintColor,
+                            //     ),
+                            //   ),
+                            //   ),
+                            //   const SizedBox(height: Dimensions.paddingSizeDefault),
+                            //   Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge), child: SocialLoginWidget(fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
+                            //   const SizedBox(height: Dimensions.paddingSizeLarge),
+                            // ],
 
 
                             Center(
@@ -258,11 +259,12 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
 }
 
 
-bool _isShowSocialLoginButton (ConfigModel configModel, SocialMediaLoginOptions? socialStatus){
-  return (configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
-      && (configModel.customerLogin?.loginOption?.manualLogin != 1)
-      && ( (socialStatus?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
-          || socialStatus?.google == 1
-          || socialStatus?.facebook == 1
-      );
-}
+// Social login disabled
+// bool _isShowSocialLoginButton (ConfigModel configModel, SocialMediaLoginOptions? socialStatus){
+//   return (configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
+//       && (configModel.customerLogin?.loginOption?.manualLogin != 1)
+//       && ( (socialStatus?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
+//           || socialStatus?.google == 1
+//           || socialStatus?.facebook == 1
+//       );
+// }

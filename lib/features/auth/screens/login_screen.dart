@@ -7,7 +7,7 @@ import 'package:bokashi/features/auth/controllers/auth_controller.dart';
 import 'package:bokashi/features/auth/domain/models/user_log_data.dart';
 import 'package:bokashi/features/auth/enums/from_page.dart';
 import 'package:bokashi/features/auth/widgets/only_social_login_widget.dart';
-import 'package:bokashi/features/auth/widgets/social_login_widget.dart';
+// import 'package:bokashi/features/auth/widgets/social_login_widget.dart'; // Social login disabled
 import 'package:bokashi/features/splash/controllers/splash_controller.dart';
 import 'package:bokashi/features/splash/domain/models/config_model.dart';
 import 'package:bokashi/helper/number_checker_helper.dart';
@@ -377,31 +377,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const SizedBox(height: Dimensions.paddingSizeLarge),
                                   ],
 
-                                  if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && configModel.customerLogin?.loginOption?.otpLogin != 1)
-                                    Row(
-                                      children: [
-                                        Expanded(child: Divider(color: Theme.of(context).hintColor)),
-                                        const SizedBox(width: Dimensions.paddingSizeSmall),
+                                  // Social login (Google, Apple, Facebook) disabled
+                                  // if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && configModel.customerLogin?.loginOption?.otpLogin != 1)
+                                  //   Row(
+                                  //     children: [
+                                  //       Expanded(child: Divider(color: Theme.of(context).hintColor)),
+                                  //       const SizedBox(width: Dimensions.paddingSizeSmall),
+                                  //       Text(getTranslated('or_sign_in_with', context)!,
+                                  //         style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                                  //             fontSize: Dimensions.fontSizeDefault,
+                                  //             color: Theme.of(context).hintColor,
+                                  //             fontWeight: FontWeight.w400
+                                  //         ),
+                                  //       ),
+                                  //       const SizedBox(width: Dimensions.paddingSizeSmall),
+                                  //       Expanded(child: Divider(color: Theme.of(context).hintColor)),
+                                  //     ],
+                                  //   ),
 
-                                        Text(getTranslated('or_sign_in_with', context)!,
-                                          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                                              fontSize: Dimensions.fontSizeDefault,
-                                              color: Theme.of(context).hintColor,
-                                              fontWeight: FontWeight.w400
-                                          ),
-                                        ),
+                                  // if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
+                                  //   const SizedBox(height: Dimensions.paddingSizeSmall),
 
-                                        const SizedBox(width: Dimensions.paddingSizeSmall),
-                                        Expanded(child: Divider(color: Theme.of(context).hintColor)),
-                                      ],
-                                    ),
-
-                                  if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
-                                    const SizedBox(height: Dimensions.paddingSizeSmall),
-
-
-                                  if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
-                                    Center(child: SocialLoginWidget(fromPage:  widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
+                                  // if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
+                                  //   Center(child: SocialLoginWidget(fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
                                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
                                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [

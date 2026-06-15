@@ -52,18 +52,24 @@ class SocialLoginWidgetState extends State<SocialLoginWidget> {
       socialLoginList.add("apple");
     }
 
+    // Social login (Google, Apple, Facebook) disabled
+    return const SizedBox.shrink();
+
+    // ignore: dead_code
     return Consumer<AuthController>(builder: (context, authProvider, _) {
       if (socialLoginList.length == 1) {
         return Row(children: [
-          if (socialLoginConfig?.google == 1)
-            Expanded(
-                child: InkWell(
-                  onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                  child: SocialLoginButtonWidget(
-                    text: getTranslated('continue_with_google', context)!,
-                    image: Images.google,
-                  ),
-                )),
+          // Google login disabled
+          // if (socialLoginConfig?.google == 1)
+          //   Expanded(
+          //       child: InkWell(
+          //         onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
+          //         child: SocialLoginButtonWidget(
+          //           text: getTranslated('continue_with_google', context)!,
+          //           image: Images.google,
+          //         ),
+          //       )),
+
            // Facebook login disabled
            // if (socialLoginConfig?.facebook == 1)
            //  Expanded(
@@ -75,33 +81,33 @@ class SocialLoginWidgetState extends State<SocialLoginWidget> {
            //      ),
            //    ),),
 
-            if(socialLoginConfig?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
-              Expanded(
-                child: InkWell(
-                  onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                  child: SocialLoginButtonWidget(
-                    text: getTranslated('continue_with_apple', context)!,
-                    image: Images.appleLogo,
-                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                  ),
-                ),
-              ),
+            // Apple login disabled
+            // if(socialLoginConfig?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
+            //   Expanded(
+            //     child: InkWell(
+            //       onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
+            //       child: SocialLoginButtonWidget(
+            //         text: getTranslated('continue_with_apple', context)!,
+            //         image: Images.appleLogo,
+            //         color: Theme.of(context).textTheme.bodyMedium?.color,
+            //       ),
+            //     ),
+            //   ),
           ]);
         } else if(socialLoginList.length == 2){
           return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
 
-            if(socialLoginConfig?.google == 1)...[
-              Expanded(child: InkWell(
-                onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                child: SocialLoginButtonWidget(
-                  text: getTranslated('google', context)!,
-                  image: Images.google,
-                ),
-
-              )),
-              const SizedBox(width: Dimensions.paddingSizeDefault),
-            ],
-
+            // Google login disabled
+            // if(socialLoginConfig?.google == 1)...[
+            //   Expanded(child: InkWell(
+            //     onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
+            //     child: SocialLoginButtonWidget(
+            //       text: getTranslated('google', context)!,
+            //       image: Images.google,
+            //     ),
+            //   )),
+            //   const SizedBox(width: Dimensions.paddingSizeDefault),
+            // ],
 
             // Facebook login disabled
             // if(socialLoginConfig?.facebook == 1)...[
@@ -117,32 +123,35 @@ class SocialLoginWidgetState extends State<SocialLoginWidget> {
             //       : const SizedBox.shrink(),
             // ],
 
-            if(socialLoginConfig?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)...[
-              Expanded(
-                child: InkWell(
-                  onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                  child: SocialLoginButtonWidget(
-                    text: getTranslated('continue_with_apple', context)!,
-                    image: Images.appleLogo,
-                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                  ),
-                ),
-              ),
-            ],
+            // Apple login disabled
+            // if(socialLoginConfig?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)...[
+            //   Expanded(
+            //     child: InkWell(
+            //       onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
+            //       child: SocialLoginButtonWidget(
+            //         text: getTranslated('continue_with_apple', context)!,
+            //         image: Images.appleLogo,
+            //         color: Theme.of(context).textTheme.bodyMedium?.color,
+            //       ),
+            //     ),
+            //   ),
+            // ],
 
           ]);
         }   else if(socialLoginList.length == 3){
         return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          if (socialLoginConfig?.google == 1) ...[
-            InkWell(
-              onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
-              child: const SocialLoginButtonWidget(
-                image: Images.google,
-                padding: EdgeInsets.all(Dimensions.paddingSizeSmall),
-              ),
-            ),
-            const SizedBox(width: Dimensions.paddingSizeLarge),
-          ],
+          // Google login disabled
+          // if (socialLoginConfig?.google == 1) ...[
+          //   InkWell(
+          //     onTap: () => googleLogin(context, widget.fromPage, widget.onLoginSuccess),
+          //     child: const SocialLoginButtonWidget(
+          //       image: Images.google,
+          //       padding: EdgeInsets.all(Dimensions.paddingSizeSmall),
+          //     ),
+          //   ),
+          //   const SizedBox(width: Dimensions.paddingSizeLarge),
+          // ],
+
           // Facebook login disabled
           // if (socialLoginConfig?.facebook == 1) ...[
           //   InkWell(
@@ -154,17 +163,19 @@ class SocialLoginWidgetState extends State<SocialLoginWidget> {
           //   ),
           //   const SizedBox(width: Dimensions.paddingSizeLarge),
           // ],
-          if (socialLoginConfig?.apple == 1 &&
-              defaultTargetPlatform == TargetPlatform.iOS) ...[
-            InkWell(
-              onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
-              child: SocialLoginButtonWidget(
-                image: Images.appleLogo,
-                color: Theme.of(context).textTheme.bodyMedium?.color,
-                padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
-              ),
-            ),
-          ],
+
+          // Apple login disabled
+          // if (socialLoginConfig?.apple == 1 &&
+          //     defaultTargetPlatform == TargetPlatform.iOS) ...[
+          //   InkWell(
+          //     onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
+          //     child: SocialLoginButtonWidget(
+          //       image: Images.appleLogo,
+          //       color: Theme.of(context).textTheme.bodyMedium?.color,
+          //       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
+          //     ),
+          //   ),
+          // ],
         ]);
       } else {
         return Container(
