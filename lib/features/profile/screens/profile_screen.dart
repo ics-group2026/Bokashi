@@ -13,7 +13,6 @@ import 'package:bokashi/utill/dimensions.dart';
 import 'package:bokashi/utill/images.dart';
 import 'package:bokashi/common/basewidget/custom_button_widget.dart';
 import 'package:bokashi/common/basewidget/custom_textfield_widget.dart';
-import 'package:bokashi/features/profile/widgets/delete_account_bottom_sheet_widget.dart';
 import 'package:bokashi/common/basewidget/show_custom_snakbar_widget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -160,17 +159,6 @@ class ProfileScreenState extends State<ProfileScreen> {
                   Text(getTranslated('profile', context)??"",
                       style: textRegular.copyWith(fontSize: 20, color: Colors.white),
                       maxLines: 1, overflow: TextOverflow.ellipsis),
-                  const Spacer(),
-                  Padding(padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
-                      child: InkWell(onTap: () => showModalBottomSheet(backgroundColor: Colors.transparent,
-                          context: context, builder: (_)=>  DeleteAccountBottomSheet(customerId: profile.userID)),
-                        child: Container(decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Dimensions.paddingSizeSmall)),
-                          padding: const EdgeInsets.all(Dimensions.paddingSizeDefault),
-                          child: Icon(Icons.more_vert_rounded, color: Theme.of(context).cardColor),
-                        ),
-                      )),
-
                 ])),
 
             Container(padding: const EdgeInsets.only(top: 55),
@@ -316,6 +304,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                     valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
                   )),
                 ),
+
               ]),
             ),
           ]);
