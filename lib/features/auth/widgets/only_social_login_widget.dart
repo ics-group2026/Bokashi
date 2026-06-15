@@ -1,5 +1,4 @@
-﻿import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
 import 'package:bokashi/common/basewidget/custom_asset_image_widget.dart';
 import 'package:bokashi/common/basewidget/show_custom_snakbar_widget.dart';
 import 'package:bokashi/features/auth/controllers/auth_controller.dart';
@@ -124,7 +123,8 @@ class _OnlySocialLoginWidgetState extends State<OnlySocialLoginWidget> {
                 ),
                 const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
-                if(socialLogin.google == 1)...[
+                // Google login disabled on iOS
+                if(socialLogin.google == 1 && isSocialLoginEnabledOnPlatform)...[
                   Row(children: [
 
                     Expanded(child: Container()),
@@ -210,52 +210,54 @@ class _OnlySocialLoginWidgetState extends State<OnlySocialLoginWidget> {
                 //   const SizedBox(height: Dimensions.paddingSizeLarge),
                 // ],
 
-                if(socialLogin.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)...[
-                  Row(children: [
+                // Apple login disabled on iOS
+                // if(socialLogin.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)...[
+                //   Row(children: [
+                //
+                //     Expanded(child: Container()),
+                //
+                //     Expanded(flex: 4,
+                //       child: Consumer<AuthController>(
+                //           builder: (context, authProvider, child) {
+                //             return InkWell(
+                //               onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
+                //               child: Container(
+                //                 padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
+                //                 decoration: BoxDecoration(
+                //                   color: Theme.of(context).hintColor.withValues(alpha:0.08),
+                //                   borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                //                   border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha:0.1)),
+                //                 ),
+                //                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                //
+                //                   Image.asset(
+                //                     Images.appleLogo, color: Theme.of(context).textTheme.bodyMedium?.color,
+                //                     height: ResponsiveHelper.isTab(context) ? 20 : 15,
+                //                     width: ResponsiveHelper.isTab(context) ? 20 : 15,
+                //                   ),
+                //                   const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+                //
+                //
+                //                   Text(getTranslated("continue_with_apple", context)!, style: robotoBold.copyWith(
+                //                     fontSize: Dimensions.fontSizeDefault,
+                //                     color: Theme.of(context).textTheme.bodyMedium?.color,
+                //                   )),
+                //
+                //                 ],),
+                //               ),
+                //             );
+                //           }
+                //       ),
+                //     ),
+                //
+                //     Expanded(child: Container()),
+                //
+                //   ]),
+                //   const SizedBox(height: Dimensions.paddingSizeLarge),
+                // ],
 
-                    Expanded(child: Container()),
 
-                    Expanded(flex: 4,
-                      child: Consumer<AuthController>(
-                          builder: (context, authProvider, child) {
-                            return InkWell(
-                              onTap: () => appleLogin(context, widget.fromPage, widget.onLoginSuccess),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeDefault),
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).hintColor.withValues(alpha:0.08),
-                                  borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                                  border: Border.all(color: Theme.of(context).primaryColor.withValues(alpha:0.1)),
-                                ),
-                                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-
-                                  Image.asset(
-                                    Images.appleLogo, color: Theme.of(context).textTheme.bodyMedium?.color,
-                                    height: ResponsiveHelper.isTab(context) ? 20 : 15,
-                                    width: ResponsiveHelper.isTab(context) ? 20 : 15,
-                                  ),
-                                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-
-                                  Text(getTranslated("continue_with_apple", context)!, style: robotoBold.copyWith(
-                                    fontSize: Dimensions.fontSizeDefault,
-                                    color: Theme.of(context).textTheme.bodyMedium?.color,
-                                  )),
-
-                                ],),
-                              ),
-                            );
-                          }
-                      ),
-                    ),
-
-                    Expanded(child: Container()),
-
-                  ]),
-                  const SizedBox(height: Dimensions.paddingSizeLarge),
-                ],
-
-
+                if(isSocialLoginEnabledOnPlatform) ...[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
                   child: Row(
@@ -277,6 +279,7 @@ class _OnlySocialLoginWidgetState extends State<OnlySocialLoginWidget> {
                   ),
                 ),
                 const SizedBox(height: Dimensions.paddingSizeSmall),
+                ],
 
                 Center(
                   child: InkWell(

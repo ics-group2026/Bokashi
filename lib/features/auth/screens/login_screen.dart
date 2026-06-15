@@ -85,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // final socialStatus = configModel.customerLogin?.socialMediaLoginOptions;
 
     if(configModel.customerLogin!.loginOption!.manualLogin == 0 && configModel.customerLogin!.loginOption!.otpLogin == 0) {
+      // On iOS, social login is disabled — show guest-only screen instead of social buttons
       return OnlySocialLoginWidget(fromLogout: widget.fromLogout, fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess);
     }
     if(configModel.customerLogin!.loginOption!.manualLogin == 0) {
@@ -377,7 +378,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const SizedBox(height: Dimensions.paddingSizeLarge),
                                   ],
 
-                                  if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && configModel.customerLogin?.loginOption?.otpLogin != 1)
+                                  if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && configModel.customerLogin?.loginOption?.otpLogin != 1 && isSocialLoginEnabledOnPlatform)
                                     Row(
                                       children: [
                                         Expanded(child: Divider(color: Theme.of(context).hintColor)),
@@ -396,11 +397,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ],
                                     ),
 
-                                  if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
+                                  if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1 && isSocialLoginEnabledOnPlatform)
                                     const SizedBox(height: Dimensions.paddingSizeSmall),
 
 
-                                  if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
+                                  if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1 && isSocialLoginEnabledOnPlatform)
                                     Center(child: SocialLoginWidget(fromPage:  widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
                                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
