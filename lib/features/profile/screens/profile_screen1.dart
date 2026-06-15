@@ -220,7 +220,7 @@ class _ProfileScreen1State extends State<ProfileScreen1> {
                         right: 15, top: 15,
                         child: InkWell(
                           onTap: () => showModalBottomSheet(backgroundColor: Colors.transparent,
-                              context: context, builder: (_)=>  DeleteAccountBottomSheet(customerId: profile.userID)),
+                              context: context, builder: (_) => const DeleteAccountBottomSheet()),
 
                           child: Container(
                             height: 30, width: 30,
