@@ -1,10 +1,10 @@
 import UIKit
 import Flutter
-import Firebase
 import GoogleMaps
 import flutter_downloader
-import FBSDKCoreKit
-import FBSDKLoginKit
+// Facebook SDK disabled on iOS
+// import FBSDKCoreKit
+// import FBSDKLoginKit
 
 @main
 @objc class AppDelegate: FlutterAppDelegate {
@@ -12,7 +12,7 @@ import FBSDKLoginKit
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    FirebaseApp.configure()
+    // Firebase is initialized in Dart (lib/main.dart) via firebase_options.dart
     GMSServices.provideAPIKey("YOUR_MAP_KEY_HERE")
     GeneratedPluginRegistrant.register(with: self)
     FlutterDownloaderPlugin.setPluginRegistrantCallback(registerPlugins)

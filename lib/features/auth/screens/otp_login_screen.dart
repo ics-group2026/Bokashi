@@ -1,5 +1,4 @@
 ﻿import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bokashi/common/basewidget/custom_asset_image_widget.dart';
 import 'package:bokashi/common/basewidget/custom_button_widget.dart';
@@ -7,7 +6,7 @@ import 'package:bokashi/common/basewidget/custom_textfield_widget.dart';
 import 'package:bokashi/common/basewidget/show_custom_snakbar_widget.dart';
 import 'package:bokashi/features/auth/controllers/auth_controller.dart';
 import 'package:bokashi/features/auth/enums/from_page.dart';
-// import 'package:bokashi/features/auth/widgets/social_login_widget.dart'; // Social login disabled
+import 'package:bokashi/features/auth/widgets/social_login_widget.dart';
 import 'package:bokashi/features/splash/controllers/splash_controller.dart';
 import 'package:bokashi/features/splash/domain/models/config_model.dart';
 import 'package:bokashi/helper/route_healper.dart';
@@ -48,8 +47,7 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
     final double width = MediaQuery.of(context).size.width;
     final Size size = MediaQuery.of(context).size;
     final ConfigModel configModel = Provider.of<SplashController>(context, listen: false).configModel!;
-    // Social login disabled
-    // final SocialMediaLoginOptions? socialStatus = configModel.customerLogin?.socialMediaLoginOptions;
+    final SocialMediaLoginOptions? socialStatus = configModel.customerLogin?.socialMediaLoginOptions;
 
     return PopScope(
       canPop: false,
@@ -200,20 +198,20 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
                             ]),
 
 
-                            // Social login (Google, Apple, Facebook) disabled
-                            // if(_isShowSocialLoginButton(configModel, socialStatus))...[
-                            //   Center(child: Text(
-                            //     getTranslated('or', context)!,
-                            //     style: titilliumRegular.copyWith(
-                            //       fontSize: Dimensions.fontSizeDefault,
-                            //       color: Theme.of(context).hintColor,
-                            //     ),
-                            //   ),
-                            //   ),
-                            //   const SizedBox(height: Dimensions.paddingSizeDefault),
-                            //   Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge), child: SocialLoginWidget(fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
-                            //   const SizedBox(height: Dimensions.paddingSizeLarge),
-                            // ],
+                            if(_isShowSocialLoginButton(configModel, socialStatus))...[
+                              Center(child: Text(
+                                getTranslated('or', context)!,
+                                style: titilliumRegular.copyWith(
+                                  fontSize: Dimensions.fontSizeDefault,
+                                  color: Theme.of(context).hintColor,
+                                ),
+                              ),
+                              ),
+                              const SizedBox(height: Dimensions.paddingSizeDefault),
+
+                              Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge) ,child: SocialLoginWidget(fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
+                              const SizedBox(height: Dimensions.paddingSizeLarge),
+                            ],
 
 
                             Center(
@@ -259,12 +257,15 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
 }
 
 
-// Social login disabled
-// bool _isShowSocialLoginButton (ConfigModel configModel, SocialMediaLoginOptions? socialStatus){
-//   return (configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
-//       && (configModel.customerLogin?.loginOption?.manualLogin != 1)
-//       && ( (socialStatus?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
-//           || socialStatus?.google == 1
-//           || socialStatus?.facebook == 1
-//       );
-// }
+bool _isShowSocialLoginButton (ConfigModel configModel, SocialMediaLoginOptions? socialStatus){
+  // Social login disabled on iOS
+  if (!isSocialLoginEnabledOnPlatform) return false;
+
+  return (configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
+      && (configModel.customerLogin?.loginOption?.manualLogin != 1)
+      && (socialStatus?.google == 1);
+      // Facebook login disabled
+      // || socialStatus?.facebook == 1
+      // Apple login disabled on iOS
+      // || (socialStatus?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
+}

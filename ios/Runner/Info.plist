@@ -22,19 +22,22 @@
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
 	<array>
+		<!-- Google Sign-In disabled on iOS -->
+		<!--
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.975837518429-q55pudr659qujnlnkajhaeesqpqf1slk</string>
-				<!-- Facebook temporarily disabled -->
 			</array>
 		</dict>
+		-->
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<!-- Facebook temporarily disabled -->
+	<!-- Facebook login disabled on iOS -->
+	<!--
 	<key>FacebookAppID</key>
 	<string></string>
 	<key>FacebookClientToken</key>
@@ -48,6 +51,7 @@
         <string>fbauth2</string>
         <string>fbshareextension</string>
     </array>
+	-->
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
