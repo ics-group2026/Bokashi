@@ -366,7 +366,7 @@ class Product {
       _discount = json['discount'].toDouble();
     }
     _discountType = json['discount_type'];
-    _currentStock = json['current_stock'] == null ? 0 : int.parse(json['current_stock'].toString());
+    _currentStock = json['current_stock'] == null ? 0 : double.parse(json['current_stock'].toString()).toInt();
     _details = json['details'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
@@ -382,17 +382,17 @@ class Product {
       _shippingCost = double.parse(json['shipping_cost'].toString());
     }
     if(json['multiply_qty']!=null){
-      _isMultiPly = int.parse(json['multiply_qty'].toString());
+      _isMultiPly = double.parse(json['multiply_qty'].toString()).toInt();
     }
     if(json['reviews_count']!=null){
-      _reviewCount = int.parse(json['reviews_count'].toString());
+      _reviewCount = double.parse(json['reviews_count'].toString()).toInt();
     }
     _videoUrl = json['video_url'];
     if(json['minimum_order_qty'] != null){
       try{
         _minimumOrderQty = json['minimum_order_qty'];
       }catch(e){
-        _minimumOrderQty = int.parse(json['minimum_order_qty'].toString());
+        _minimumOrderQty = double.parse(json['minimum_order_qty'].toString()).toInt();
       }
 
     }else{
