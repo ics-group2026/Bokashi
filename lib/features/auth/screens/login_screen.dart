@@ -378,6 +378,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     const SizedBox(height: Dimensions.paddingSizeLarge),
                                   ],
 
+                                  // Social media login (e.g. Google) hidden by request.
+                                  /*
                                   if((configModel.customerLogin?.loginOption?.socialMediaLogin == 1) && configModel.customerLogin?.loginOption?.otpLogin != 1 && isSocialLoginEnabledOnPlatform)
                                     Row(
                                       children: [
@@ -403,6 +405,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   if(configModel.customerLogin?.loginOption?.socialMediaLogin == 1 && isSocialLoginEnabledOnPlatform)
                                     Center(child: SocialLoginWidget(fromPage:  widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
+                                  */
                                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
                                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [

@@ -198,6 +198,8 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
                             ]),
 
 
+                            // Social media login (e.g. Google) hidden by request.
+                            /*
                             if(_isShowSocialLoginButton(configModel, socialStatus))...[
                               Center(child: Text(
                                 getTranslated('or', context)!,
@@ -212,6 +214,7 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
                               Padding(padding: EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraLarge) ,child: SocialLoginWidget(fromPage: widget.fromPage, onLoginSuccess: widget.onLoginSuccess)),
                               const SizedBox(height: Dimensions.paddingSizeLarge),
                             ],
+                            */
 
 
                             Center(
