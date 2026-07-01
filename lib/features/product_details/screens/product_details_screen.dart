@@ -351,10 +351,11 @@ class _ProductDetailsProductListWidget extends StatelessWidget {
                 }
             ),
 
-            Padding(padding: const EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall),
-              child: ShopMoreProductViewList(
-              scrollController: scrollController, sellerId: productDetailsController.productDetailsModel!.userId!)
-            ),
+            if(productDetailsController.productDetailsModel?.userId != null)
+              Padding(padding: const EdgeInsets.symmetric(horizontal : Dimensions.paddingSizeSmall),
+                child: ShopMoreProductViewList(
+                scrollController: scrollController, sellerId: productDetailsController.productDetailsModel!.userId!)
+              ),
 
 
 

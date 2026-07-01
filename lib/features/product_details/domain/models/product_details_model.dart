@@ -492,9 +492,9 @@ class ProductDetailsModel {
     _taxType = json['tax_type'];
     _discount = json['discount'].toDouble();
     _discountType = json['discount_type'];
-    _currentStock = json['current_stock'];
+    _currentStock = json['current_stock'] == null ? 0 : double.parse(json['current_stock'].toString()).toInt();
     if(json['minimum_order_qty'] != null){
-      _minimumOrderQty = int.parse(json['minimum_order_qty'].toString());
+      _minimumOrderQty = double.parse(json['minimum_order_qty'].toString()).toInt();
     }else{
       _minimumOrderQty = 1;
     }

@@ -46,7 +46,15 @@ class ReviewController extends ChangeNotifier {
     ApiResponseModel reviewResponse = await reviewServiceInterface.get(productId.toString());
     if (reviewResponse.response != null && reviewResponse.response!.statusCode == 200) {
       _reviewList = [];
-      reviewResponse.response!.data.forEach((reviewModel) => _reviewList!.add(ReviewModel.fromJson(reviewModel)));
+      final dynamic data = reviewResponse.response!.data;
+      final List reviewData = data is List
+          ? data
+          : (data is Map
+              ? (data.values.firstWhere((v) => v is List, orElse: () => const <dynamic>[]) as List)
+              : const <dynamic>[]);
+      for (final reviewModel in reviewData) {
+        _reviewList!.add(ReviewModel.fromJson(reviewModel));
+      }
     } else {
       ApiChecker.checkApi( reviewResponse);
     }
