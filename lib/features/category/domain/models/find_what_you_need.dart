@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class FindWhatYouNeedModel {
   List<FindWhatYouNeed>? findWhatYouNeed;
@@ -48,17 +49,17 @@ class FindWhatYouNeed {
       });
 
   FindWhatYouNeed.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     slug = json['slug'];
     icon = json['icon'];
-    parentId = json['parent_id'];
-    position = json['position'];
+    parentId = parseInt(json['parent_id']);
+    position = parseInt(json['position']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    homeStatus = json['home_status'];
-    priority = json['priority'];
-    productCount = int.parse(json['product_count'].toString());
+    homeStatus = parseInt(json['home_status']);
+    priority = parseInt(json['priority']);
+    productCount = double.parse(json['product_count'].toString()).toInt();
     if (json['icon_full_url'] != null) {
       iconFullUrl = ImageFullUrl.fromJson(json['icon_full_url']);
     }
@@ -103,17 +104,17 @@ class Childes {
         this.iconFullUrl});
 
   Childes.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     slug = json['slug'];
     icon = json['icon'];
-    parentId = json['parent_id'];
-    position = json['position'];
+    parentId = parseInt(json['parent_id']);
+    position = parseInt(json['position']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    homeStatus = json['home_status'];
-    priority = json['priority'];
-    subCategoryProductCount = int.parse(json['sub_category_product_count'].toString());
+    homeStatus = parseInt(json['home_status']);
+    priority = parseInt(json['priority']);
+    subCategoryProductCount = double.parse(json['sub_category_product_count'].toString()).toInt();
     if (json['icon_full_url'] != null) {
       iconFullUrl = ImageFullUrl.fromJson(json['icon_full_url']);
     }

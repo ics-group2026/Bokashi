@@ -1,5 +1,6 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/shop/domain/models/seller_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ShopAgainFromRecentStoreModel {
   int? id;
@@ -28,13 +29,13 @@ class ShopAgainFromRecentStoreModel {
        });
 
   ShopAgainFromRecentStoreModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     slug = json['slug'];
     thumbnail = json['thumbnail'];
-    unitPrice = json['unit_price'].toDouble();
-    userId = json['user_id'];
-    reviewsCount = int.parse(json['reviews_count'].toString());
+    unitPrice = parseDouble(json['unit_price']);
+    userId = parseInt(json['user_id']);
+    reviewsCount = double.parse(json['reviews_count'].toString()).toInt();
     seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
     thumbnailFullUrl = json['thumbnail_full_url'] != null
       ? ImageFullUrl.fromJson(json['thumbnail_full_url'])

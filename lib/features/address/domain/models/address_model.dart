@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class AddressModel {
   int? id;
   String? contactPersonName;
@@ -35,7 +36,7 @@ class AddressModel {
       });
 
   AddressModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     contactPersonName = json['contact_person_name'];
     addressType = json['address_type'];
     address = json['address'];

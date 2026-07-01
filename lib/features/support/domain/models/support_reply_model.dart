@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class SupportReplyModel {
   int? id;
@@ -22,7 +23,7 @@ class SupportReplyModel {
       });
 
   SupportReplyModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     customerMessage = json['customer_message'];
     adminMessage = json['admin_message'];
     createdAt = json['created_at'];

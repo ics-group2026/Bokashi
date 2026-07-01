@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 
 class Brand {
@@ -10,9 +11,9 @@ class Brand {
   Brand({this.totalSize, this.limit, this.offset, this.brands});
 
   Brand.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
-    limit = json['limit'];
-    offset = json['offset'];
+    totalSize = parseInt(json['total_size']);
+    limit = parseInt(json['limit']);
+    offset = parseInt(json['offset']);
     if (json['brands'] != null) {
       brands = <BrandModel>[];
       json['brands'].forEach((v) {
@@ -78,13 +79,13 @@ class BrandModel {
 
 
   BrandModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _name = json['name'];
     _image = json['image'];
-    _status = json['status'];
+    _status = parseInt(json['status']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _brandProductsCount = json['brand_products_count'];
+    _brandProductsCount = parseInt(json['brand_products_count']);
     _imageFullUrl = json['image_full_url'] != null
         ? ImageFullUrl.fromJson(json['image_full_url'])
         : null;

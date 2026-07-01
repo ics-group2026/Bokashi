@@ -1,6 +1,7 @@
-﻿import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/shop/domain/enums/vacation_duration_type.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ConfigModel {
   String? brandSetting;
@@ -179,7 +180,7 @@ class ConfigModel {
   ConfigModel.fromJson(Map<String, dynamic> json) {
     brandSetting = json['brand_setting'];
     digitalProductSetting = json['digital_product_setting'];
-    systemDefaultCurrency = json['system_default_currency'];
+    systemDefaultCurrency = parseInt(json['system_default_currency']);
     digitalPayment = json['digital_payment'];
     cashOnDelivery = json['cash_on_delivery'];
     sellerRegistration = json['seller_registration'];
@@ -195,13 +196,13 @@ class ConfigModel {
     // companyIcon = json['company_fav_icon'];
     companyName = json['company_name'];
     if(json['delivery_country_restriction'] != null){
-      deliveryCountryRestriction = json['delivery_country_restriction'];
+      deliveryCountryRestriction = parseInt(json['delivery_country_restriction']);
     }else{
       deliveryCountryRestriction = 0;
     }
 
     if(json['delivery_zip_code_area_restriction'] != null){
-      deliveryZipCodeAreaRestriction = json['delivery_zip_code_area_restriction'];
+      deliveryZipCodeAreaRestriction = parseInt(json['delivery_zip_code_area_restriction']);
     }else{
       deliveryZipCodeAreaRestriction = 0;
     }
@@ -259,23 +260,23 @@ class ConfigModel {
     announcement = json['announcement'] != null ? Announcement.fromJson(json['announcement']) : null;
     softwareVersion = json['software_version'];
     if(json['decimal_point_settings'] != null){
-      decimalPointSettings = int.parse(json['decimal_point_settings'].toString());
+      decimalPointSettings = double.parse(json['decimal_point_settings'].toString()).toInt();
     }else{
       decimalPointSettings = 1;
     }
 
     inhouseSelectedShippingType = json['inhouse_selected_shipping_type'];
-    billingInputByCustomer = json['billing_input_by_customer'];
-    minimumOrderLimit = json['minimum_order_limit'];
-    walletStatus = json['wallet_status'];
-    loyaltyPointStatus = json['loyalty_point_status'];
+    billingInputByCustomer = parseInt(json['billing_input_by_customer']);
+    minimumOrderLimit = parseInt(json['minimum_order_limit']);
+    walletStatus = parseInt(json['wallet_status']);
+    loyaltyPointStatus = parseInt(json['loyalty_point_status']);
     if(json['loyalty_point_exchange_rate'] != null){
       loyaltyPointExchangeRate =  double.parse(json['loyalty_point_exchange_rate'].toString());
     }else{
       loyaltyPointExchangeRate = 1;
     }
 
-    loyaltyPointMinimumPoint = json['loyalty_point_minimum_point'];
+    loyaltyPointMinimumPoint = parseInt(json['loyalty_point_minimum_point']);
     if (json['payment_methods'] != null) {
       paymentMethods = <PaymentMethods>[];
       json['payment_methods'].forEach((v) {
@@ -294,7 +295,7 @@ class ConfigModel {
       });
     }
     if(json['guest_checkout'] != null){
-      guestCheckOut = int.parse(json['guest_checkout'].toString());
+      guestCheckOut = double.parse(json['guest_checkout'].toString()).toInt();
     }else{
       guestCheckOut = 0;
     }
@@ -318,9 +319,9 @@ class ConfigModel {
 
     if(json['order_verification'] != null){
       try{
-        orderVerification = json['order_verification'];
+        orderVerification = parseInt(json['order_verification']);
       }catch(e){
-        orderVerification = int.parse(json['order_verification'].toString());
+        orderVerification = double.parse(json['order_verification'].toString()).toInt();
       }
     }
 
@@ -330,7 +331,7 @@ class ConfigModel {
     inhouseVacationAdd = json['inhouse_vacation_add'] != null
         ? InhouseVacationAdd.fromJson(json['inhouse_vacation_add'])
         : null;
-    mapApiStatus = json['map_api_status'] != null ? int.parse(json['map_api_status'].toString()) : null;
+    mapApiStatus = json['map_api_status'] != null ? double.parse(json['map_api_status'].toString()).toInt() : null;
 
     defaultLocation = json['default_location'] != null
       ? DefaultLocation.fromJson(json['default_location'])
@@ -461,11 +462,11 @@ class Faq {
         this.updatedAt});
 
   Faq.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     question = json['question'];
     answer = json['answer'];
-    ranking = json['ranking'];
-    status = json['status'];
+    ranking = parseInt(json['ranking']);
+    status = parseInt(json['status']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -481,9 +482,9 @@ class RefundPolicy {
   RefundPolicy.fromJson(Map<String, dynamic> json) {
     if(json['status'] != null){
       try{
-        status = json['status'];
+        status = parseInt(json['status']);
       }catch(e){
-        status = int.parse(json['status'].toString());
+        status = double.parse(json['status'].toString()).toInt();
       }
     }
 
@@ -513,14 +514,14 @@ class CurrencyList {
         this.updatedAt});
 
   CurrencyList.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     symbol = json['symbol'];
     code = json['code'];
     status = json['status'];
     if(json['exchange_rate'] != null){
       try{
-        exchangeRate = json['exchange_rate'].toDouble();
+        exchangeRate = parseDouble(json['exchange_rate']);
       }catch(e){
         exchangeRate = double.parse(json['exchange_rate'].toString());
       }
@@ -554,7 +555,7 @@ class ColorsModel {
   ColorsModel({this.id, this.name, this.code, this.createdAt, this.updatedAt});
 
   ColorsModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     code = json['code'];
     createdAt = json['created_at'];
@@ -642,7 +643,7 @@ class PopularTags {
       {this.id, this.tag,  this.createdAt, this.updatedAt});
 
   PopularTags.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     tag = json['tag'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -742,7 +743,7 @@ class ForAndroid {
   ForAndroid({this.status, this.version, this.link});
 
   ForAndroid.fromJson(Map<String, dynamic> json) {
-    status = int.parse(json['status'].toString());
+    status = double.parse(json['status'].toString()).toInt();
     version = json['version'];
     link = json['link'];
   }
@@ -838,8 +839,8 @@ class MaintenanceMessages {
         this.messageBody});
 
   MaintenanceMessages.fromJson(Map<String, dynamic> json) {
-    businessNumber = json['business_number'];
-    businessEmail = json['business_email'];
+    businessNumber = parseInt(json['business_number']);
+    businessEmail = parseInt(json['business_email']);
     maintenanceMessage = json['maintenance_message'];
     messageBody = json['message_body'];
   }

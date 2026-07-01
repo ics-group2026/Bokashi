@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/features/chat/domain/models/chat_model.dart';
+import 'package:bokashi/features/chat/domain/models/chat_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class MessageModel {
   int? totalSize;
@@ -50,7 +51,7 @@ class Message {
       });
 
   Message.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     message = json['message'];
     sentByCustomer = json['sent_by_customer'];
     sentBySeller = json['sent_by_seller'];

@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class BusinessPageModel {
   int? id;
   String? title;
@@ -23,12 +24,12 @@ class BusinessPageModel {
         this.banner});
 
   BusinessPageModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     title = json['title'];
     slug = json['slug'];
     description = json['description'];
-    status = json['status'];
-    defaultStatus = json['default_status'];
+    status = parseInt(json['status']);
+    defaultStatus = parseInt(json['default_status']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     bannerFullUrl = json['banner_full_url'] != null
@@ -68,7 +69,7 @@ class BannerFullUrl {
   BannerFullUrl.fromJson(Map<String, dynamic> json) {
     key = json['key'];
     path = json['path'];
-    status = json['status'];
+    status = parseInt(json['status']);
   }
 
   Map<String, dynamic> toJson() {
@@ -101,9 +102,9 @@ class Banner {
         this.updatedAt});
 
   Banner.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     attachableType = json['attachable_type'];
-    attachableId = json['attachable_id'];
+    attachableId = parseInt(json['attachable_id']);
     fileType = json['file_type'];
     fileName = json['file_name'];
     storageDisk = json['storage_disk'];

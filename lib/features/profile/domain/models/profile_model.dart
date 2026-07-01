@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ProfileModel {
   int? id;
@@ -44,7 +45,7 @@ class ProfileModel {
       });
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     method = json['_method'];
     fName = json['f_name'];
@@ -56,10 +57,10 @@ class ProfileModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if(json['wallet_balance'] != null){
-      walletBalance = json['wallet_balance'].toDouble();
+      walletBalance = parseDouble(json['wallet_balance']);
     }
     if(json['loyalty_point'] != null){
-      loyaltyPoint = json['loyalty_point'].toDouble();
+      loyaltyPoint = parseDouble(json['loyalty_point']);
     }else{
       loyaltyPoint = 0.0;
     }
@@ -68,15 +69,15 @@ class ProfileModel {
     }
     if(json['referral_user_count'] != null){
       try{
-        referCount = json['referral_user_count'];
+        referCount = parseInt(json['referral_user_count']);
       }catch(e){
-        referCount = int.parse(json['referral_user_count'].toString());
+        referCount = double.parse(json['referral_user_count'].toString()).toInt();
       }
 
     }
     if(json['orders_count'] != null){
       try{
-        totalOrder = json['orders_count'].toDouble();
+        totalOrder = parseDouble(json['orders_count']);
       }catch(e){
         totalOrder = double.parse(json['orders_count'].toString());
       }
@@ -87,7 +88,7 @@ class ProfileModel {
       : null;
 
     emailVerificationToken = json['email_verification_token'];
-    isPhoneVerified = json['is_phone_verified'];
+    isPhoneVerified = parseInt(json['is_phone_verified']);
   }
 
   Map<String, dynamic> toJson() {

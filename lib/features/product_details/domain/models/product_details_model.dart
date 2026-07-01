@@ -1,6 +1,7 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/product/domain/models/product_model.dart';
 import 'package:bokashi/features/shop/domain/models/seller_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ProductDetailsModel {
   int? _id;
@@ -400,9 +401,9 @@ class ProductDetailsModel {
   List<String?>? get publishingHouse => _publishingHouse;
 
   ProductDetailsModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _addedBy = json['added_by'];
-    _userId = json['user_id'];
+    _userId = parseInt(json['user_id']);
     _name = json['name'];
     _slug = json['slug'];
     _productType = json['product_type'];
@@ -412,10 +413,10 @@ class ProductDetailsModel {
         _categoryIds!.add(CategoryIds.fromJson(v));
       });
     }
-    _brandId = json['brand_id'];
+    _brandId = parseInt(json['brand_id']);
     _unit = json['unit'];
-    _minQty = json['min_qty'];
-    _refundable = json['refundable'];
+    _minQty = parseInt(json['min_qty']);
+    _refundable = parseInt(json['refundable']);
     _digitalProductType = json['digital_product_type'];
     _digitalFileReady = json['digital_file_ready'];
     // _images = json['images'].cast<String>();
@@ -440,7 +441,7 @@ class ProductDetailsModel {
     //   });
     // }
     _thumbnail = json['thumbnail'];
-    _featured = json['featured'];
+    _featured = parseInt(json['featured']);
     _videoProvider = json['video_provider'];
     _videoUrl = json['video_url'];
     if (json['colors_formatted'] != null) {
@@ -449,7 +450,7 @@ class ProductDetailsModel {
         _colors!.add(ColorModel.fromJson(v));
       });
     }
-    _variantProduct = int.parse(json['variant_product'].toString());
+    _variantProduct = double.parse(json['variant_product'].toString()).toInt();
     _attributes = json['attributes'].cast<int>();
     if (json['choice_options'] != null) {
       _choiceOptions = <ChoiceOptions>[];
@@ -484,13 +485,13 @@ class ProductDetailsModel {
       _digitalVariation = [];
     }
 
-    _published = json['published'];
-    _unitPrice = json['unit_price'].toDouble();
-    _purchasePrice = json['purchase_price'].toDouble();
-    // _tax = json['tax'].toDouble();
+    _published = parseInt(json['published']);
+    _unitPrice = parseDouble(json['unit_price']);
+    _purchasePrice = parseDouble(json['purchase_price']);
+    // _tax = parseDouble(json['tax']);
     _taxModel = json['tax_model'];
     _taxType = json['tax_type'];
-    _discount = json['discount'].toDouble();
+    _discount = parseDouble(json['discount']);
     _discountType = json['discount_type'];
     _currentStock = json['current_stock'] == null ? 0 : double.parse(json['current_stock'].toString()).toInt();
     if(json['minimum_order_qty'] != null){
@@ -500,21 +501,21 @@ class ProductDetailsModel {
     }
 
     _details = json['details'];
-    _freeShipping = json['free_shipping'];
+    _freeShipping = parseInt(json['free_shipping']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _status = json['status'];
-    _featuredStatus = json['featured_status'];
+    _status = parseInt(json['status']);
+    _featuredStatus = parseInt(json['featured_status']);
     _metaTitle = json['meta_title'];
     _metaDescription = json['meta_description'];
     _metaImage = json['meta_image'];
-    _requestStatus = int.parse(json['request_status'].toString());
+    _requestStatus = double.parse(json['request_status'].toString()).toInt();
     _deniedNote = json['denied_note'];
-    _shippingCost = json['shipping_cost'].toDouble();
-    _multiplyQty = json['multiply_qty'];
+    _shippingCost = parseDouble(json['shipping_cost']);
+    _multiplyQty = parseInt(json['multiply_qty']);
     _code = json['code'];
     if(json['reviews_count'] != null){
-      _reviewsCount = int.parse(json['reviews_count'].toString());
+      _reviewsCount = double.parse(json['reviews_count'].toString()).toInt();
     }else{
       _reviewsCount = 0;
     }
@@ -529,9 +530,9 @@ class ProductDetailsModel {
     _seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
     if(json['wish_list_count'] != null){
       try{
-        wishList = json['wish_list_count'];
+        wishList = parseInt(json['wish_list_count']);
       }catch(e){
-        wishList = int.parse(json['wish_list_count'].toString());
+        wishList = double.parse(json['wish_list_count'].toString()).toInt();
       }
     }
 
@@ -565,7 +566,7 @@ class ProductDetailsModel {
       restockRequestedList = [];
     }
 
-    isRestockRequested = json['is_restock_requested'];
+    isRestockRequested = parseInt(json['is_restock_requested']);
 
     clearanceSale = json['clearance_sale'] != null
       ? ClearanceSale.fromJson(json['clearance_sale'])
@@ -593,7 +594,7 @@ class CategoryIds {
 
   CategoryIds.fromJson(Map<String, dynamic> json) {
     _id = json['id'];
-    _position = json['position'];
+    _position = parseInt(json['position']);
   }
 
   Map<String, dynamic> toJson() {
@@ -702,16 +703,16 @@ class Reviews {
 
 
   Reviews.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _productId = int.parse(json['product_id'].toString());
-    _customerId = int.parse(json['customer_id'].toString());
+    _id = parseInt(json['id']);
+    _productId = double.parse(json['product_id'].toString()).toInt();
+    _customerId = double.parse(json['customer_id'].toString()).toInt();
     _comment = json['comment'];
 
     if(json['attachment'] != null && json['attachment'] is !List){
       //_attachment = json['attachment'];
     }
-    _rating = json['rating'];
-    _status = json['status'];
+    _rating = parseInt(json['rating']);
+    _status = parseInt(json['status']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
     _customer = json['customer'] != null
@@ -789,7 +790,7 @@ class Customer {
 
 
   Customer.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _fName = json['f_name'];
     _lName = json['l_name'];
     _phone = json['phone'];
@@ -879,11 +880,11 @@ class DigitalVariation {
       });
 
   DigitalVariation.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    productId = json['product_id'];
+    id = parseInt(json['id']);
+    productId = parseInt(json['product_id']);
     variantKey = json['variant_key'];
     sku = json['sku'];
-    price = json['price'];
+    price = parseInt(json['price']);
     file = json['file'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

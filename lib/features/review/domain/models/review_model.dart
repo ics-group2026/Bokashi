@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ReviewModel {
   int? _id;
@@ -57,15 +58,15 @@ class ReviewModel {
   List<ImageFullUrl>? get attachmentFullUrl => _attachmentFullUrl;
 
   ReviewModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _productId = int.parse(json['product_id'].toString());
-    _customerId = int.parse(json['customer_id'].toString());
+    _id = parseInt(json['id']);
+    _productId = double.parse(json['product_id'].toString()).toInt();
+    _customerId = double.parse(json['customer_id'].toString()).toInt();
     _comment = json['comment'];
     if(json['attachment'] != null && json['attachment'] is List){
       _attachment = json['attachment'].cast<String>();
     }
-    _rating = json['rating'];
-    _status = json['status'];
+    _rating = parseInt(json['rating']);
+    _status = parseInt(json['status']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
     _customer = json['customer'] != null
@@ -178,7 +179,7 @@ class Customer {
   ImageFullUrl? get imageFullUrl => _imageFullUrl;
 
   Customer.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _name = json['name'];
     _fName = json['f_name'];
     _lName = json['l_name'];
@@ -279,9 +280,9 @@ class Reply {
   set setUpdatedAt(String? updatedAt) => _updatedAt = updatedAt;
 
   Reply.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _reviewId = json['review_id'];
-    _addedById = json['added_by_id'];
+    _id = parseInt(json['id']);
+    _reviewId = parseInt(json['review_id']);
+    _addedById = parseInt(json['added_by_id']);
     _addedBy = json['added_by'];
     _replyText = json['reply_text'];
     _createdAt = json['created_at'];

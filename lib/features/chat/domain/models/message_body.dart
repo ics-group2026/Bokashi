@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 
 class MessageBody {
   int? _id;
@@ -12,7 +13,7 @@ class MessageBody {
   String? get message => _message;
 
   MessageBody.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _message = json['message'];
   }
 

@@ -1,6 +1,7 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/product_details/domain/models/product_details_model.dart';
 import 'package:bokashi/features/shop/domain/enums/vacation_duration_type.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 
 
@@ -76,8 +77,8 @@ class MostPopularStoreModel {
       });
 
   MostPopularStoreModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    sellerId = json['seller_id'];
+    id = parseInt(json['id']);
+    sellerId = parseInt(json['seller_id']);
     name = json['name'];
     slug = json['slug'];
     address = json['address'];
@@ -93,14 +94,14 @@ class MostPopularStoreModel {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     banner = json['banner'];
-    productsCount = json['products_count'];
+    productsCount = parseInt(json['products_count']);
     if (json['products'] != null) {
       products = <Products>[];
       json['products'].forEach((v) {
         //products!.add(new Products.fromJson(v));
       });
     }
-    ordersCount = json['orders_count'];
+    ordersCount = parseInt(json['orders_count']);
     if (json['coupon_list'] != null) {
       couponList = <CouponList>[];
       json['coupon_list'].forEach((v) {
@@ -108,10 +109,10 @@ class MostPopularStoreModel {
       });
     }
     averageRating = double.tryParse(json['average_rating'].toString());
-    reviewCount = json['review_count'];
-    totalRating = json['total_rating'];
+    reviewCount = parseInt(json['review_count']);
+    totalRating = parseInt(json['total_rating']);
     positiveReview = double.tryParse(json['positive_review'].toString());
-    isVacationModeNow = json['is_vacation_mode_now'];
+    isVacationModeNow = parseInt(json['is_vacation_mode_now']);
     imageFullUrl = json['image_full_url'] != null
         ? ThumbnailFullUrl.fromJson(json['image_full_url'])
         : null;
@@ -331,63 +332,63 @@ class Products {
         this.reviews});
 
   Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     addedBy = json['added_by'];
-    userId = json['user_id'];
+    userId = parseInt(json['user_id']);
     name = json['name'];
     slug = json['slug'];
     productType = json['product_type'];
     categoryIds = json['category_ids'];
-    categoryId = json['category_id'];
-    subCategoryId = json['sub_category_id'];
+    categoryId = parseInt(json['category_id']);
+    subCategoryId = parseInt(json['sub_category_id']);
     subSubCategoryId = json['sub_sub_category_id'];
-    brandId = json['brand_id'];
+    brandId = parseInt(json['brand_id']);
     unit = json['unit'];
-    minQty = json['min_qty'];
-    refundable = json['refundable'];
+    minQty = parseInt(json['min_qty']);
+    refundable = parseInt(json['refundable']);
     digitalProductType = json['digital_product_type'];
     digitalFileReady = json['digital_file_ready'];
     images = json['images'];
     colorImage = json['color_image'];
     thumbnail = json['thumbnail'];
-    featured = json['featured'];
+    featured = parseInt(json['featured']);
     flashDeal = json['flash_deal'];
     videoProvider = json['video_provider'];
     videoUrl = json['video_url'];
     colors = json['colors'];
-    variantProduct = json['variant_product'];
+    variantProduct = parseInt(json['variant_product']);
     attributes = json['attributes'];
     choiceOptions = json['choice_options'];
     variation = json['variation'];
     digitalProductFileTypes = json['digital_product_file_types'].cast<String>();
-    published = json['published'];
-    unitPrice = json['unit_price'];
-    purchasePrice = json['purchase_price'];
-    tax = json['tax'];
+    published = parseInt(json['published']);
+    unitPrice = parseDouble(json['unit_price']);
+    purchasePrice = parseInt(json['purchase_price']);
+    tax = parseInt(json['tax']);
     taxType = json['tax_type'];
     taxModel = json['tax_model'];
-    discount = json['discount'];
+    discount = parseDouble(json['discount']);
     discountType = json['discount_type'];
-    currentStock = json['current_stock'];
-    minimumOrderQty = json['minimum_order_qty'];
+    currentStock = parseInt(json['current_stock']);
+    minimumOrderQty = parseInt(json['minimum_order_qty']);
     details = json['details'];
-    freeShipping = json['free_shipping'];
+    freeShipping = parseInt(json['free_shipping']);
     attachment = json['attachment'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    status = json['status'];
-    featuredStatus = json['featured_status'];
+    status = parseInt(json['status']);
+    featuredStatus = parseInt(json['featured_status']);
     metaTitle = json['meta_title'];
     metaDescription = json['meta_description'];
     metaImage = json['meta_image'];
-    requestStatus = json['request_status'];
+    requestStatus = parseInt(json['request_status']);
     deniedNote = json['denied_note'];
-    shippingCost = json['shipping_cost'];
-    multiplyQty = json['multiply_qty'];
-    tempShippingCost = json['temp_shipping_cost'];
-    isShippingCostUpdated = json['is_shipping_cost_updated'];
+    shippingCost = parseInt(json['shipping_cost']);
+    multiplyQty = parseInt(json['multiply_qty']);
+    tempShippingCost = parseDouble(json['temp_shipping_cost']);
+    isShippingCostUpdated = parseInt(json['is_shipping_cost_updated']);
     code = json['code'];
-    isShopTemporaryClose = json['is_shop_temporary_close'];
+    isShopTemporaryClose = parseInt(json['is_shop_temporary_close']);
     thumbnailFullUrl = json['thumbnail_full_url'] != null
         ? ThumbnailFullUrl.fromJson(json['thumbnail_full_url'])
         : null;
@@ -526,7 +527,7 @@ class ThumbnailFullUrl {
   ThumbnailFullUrl.fromJson(Map<String, dynamic> json) {
     key = json['key'];
     path = json['path'];
-    status = json['status'];
+    status = parseInt(json['status']);
   }
 
   Map<String, dynamic> toJson() {
@@ -559,7 +560,7 @@ class Storage {
         this.updatedAt});
 
   Storage.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     dataType = json['data_type'];
     dataId = json['data_id'];
     key = json['key'];
@@ -626,8 +627,8 @@ class SeoInfo {
         this.storage});
 
   SeoInfo.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    productId = json['product_id'];
+    id = parseInt(json['id']);
+    productId = parseInt(json['product_id']);
     title = json['title'];
     description = json['description'];
     index = json['index'];
@@ -716,11 +717,11 @@ class Reviews {
         this.storage});
 
   Reviews.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    productId = json['product_id'];
-    customerId = json['customer_id'];
+    id = parseInt(json['id']);
+    productId = parseInt(json['product_id']);
+    customerId = parseInt(json['customer_id']);
     deliveryManId = json['delivery_man_id'];
-    orderId = json['order_id'];
+    orderId = parseInt(json['order_id']);
     comment = json['comment'];
     if (json['attachment'] != null) {
       attachment = <Attachment>[];
@@ -728,8 +729,8 @@ class Reviews {
         attachment!.add(Attachment.fromJson(v));
       });
     }
-    rating = json['rating'];
-    status = json['status'];
+    rating = parseInt(json['rating']);
+    status = parseInt(json['status']);
     isSaved = json['is_saved'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -824,24 +825,24 @@ class CouponList {
         this.limit});
 
   CouponList.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     addedBy = json['added_by'];
     couponType = json['coupon_type'];
     couponBearer = json['coupon_bearer'];
-    sellerId = json['seller_id'];
-    customerId = json['customer_id'];
+    sellerId = parseInt(json['seller_id']);
+    customerId = parseInt(json['customer_id']);
     title = json['title'];
     code = json['code'];
     startDate = json['start_date'];
     expireDate = json['expire_date'];
-    minPurchase = json['min_purchase'];
-    maxDiscount = json['max_discount'];
-    discount = json['discount'];
+    minPurchase = parseInt(json['min_purchase']);
+    maxDiscount = parseInt(json['max_discount']);
+    discount = parseInt(json['discount']);
     discountType = json['discount_type'];
-    status = json['status'];
+    status = parseInt(json['status']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    limit = json['limit'];
+    limit = parseInt(json['limit']);
   }
 
   Map<String, dynamic> toJson() {
@@ -878,7 +879,7 @@ class OfferBannerFullUrl {
   OfferBannerFullUrl.fromJson(Map<String, dynamic> json) {
     key = json['key'];
     path = json['path'];
-    status = json['status'];
+    status = parseInt(json['status']);
   }
 
   Map<String, dynamic> toJson() {
@@ -948,7 +949,7 @@ class Seller {
       });
 
   Seller.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     fName = json['f_name'];
     lName = json['l_name'];
     phone = json['phone'];
@@ -968,12 +969,12 @@ class Seller {
     }
     gst = json['gst'];
     cmFirebaseToken = json['cm_firebase_token'];
-    posStatus = json['pos_status'];
+    posStatus = parseInt(json['pos_status']);
     minimumOrderAmount = double.tryParse(json['minimum_order_amount'].toString());
     freeDeliveryStatus = int.tryParse(json['free_delivery_status'].toString());
     freeDeliveryOverAmount =  int.tryParse(json['free_delivery_over_amount'].toString());
     appLanguage = json['app_language'];
-    ordersCount = json['orders_count'];
+    ordersCount = parseInt(json['orders_count']);
     imageFullUrl = json['image_full_url'] != null
         ? ThumbnailFullUrl.fromJson(json['image_full_url'])
         : null;

@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 
 class OrderPlaceModel {
 
@@ -19,7 +20,7 @@ class OrderPlaceModel {
   OrderPlaceModel.fromJson(Map<String, dynamic> json) {
 
     _paymentMethod = json['payment_method'];
-    _discount = json['discount'];
+    _discount = parseDouble(json['discount']);
   }
 
   Map<String, dynamic> toJson() {

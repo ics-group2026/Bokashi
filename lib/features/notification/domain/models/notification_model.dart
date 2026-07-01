@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class NotificationItemModel {
   int? totalSize;
@@ -15,10 +16,10 @@ class NotificationItemModel {
         this.notification});
 
   NotificationItemModel.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
-    limit = json['limit'];
-    offset = json['offset'];
-    newNotificationItem = json['new_notification'];
+    totalSize = parseInt(json['total_size']);
+    limit = parseInt(json['limit']);
+    offset = parseInt(json['offset']);
+    newNotificationItem = parseInt(json['new_notification']);
     if (json['notification'] != null) {
       notification = <NotificationItem>[];
       json['notification'].forEach((v) {
@@ -59,17 +60,17 @@ class NotificationItem {
       });
 
   NotificationItem.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     sentBy = json['sent_by'];
     sentTo = json['sent_to'];
     title = json['title'];
     description = json['description'];
-    notificationCount = int.parse(json['notification_count'].toString());
+    notificationCount = double.parse(json['notification_count'].toString()).toInt();
     image = json['image'];
     imageFullUrl = json['image_full_url'] != null
       ? ImageFullUrl.fromJson(json['image_full_url'])
       : null;
-    status = json['status'];
+    status = parseInt(json['status']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     seen = json['notification_seen_by'] != null ? NotificationSeenBy.fromJson(json['notification_seen_by']) : null;
@@ -92,9 +93,9 @@ class NotificationSeenBy {
         });
 
   NotificationSeenBy.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = int.parse(json['user_id'].toString());
-    notificationId = int.parse(json['notification_id'].toString());
+    id = parseInt(json['id']);
+    userId = double.parse(json['user_id'].toString()).toInt();
+    notificationId = double.parse(json['notification_id'].toString()).toInt();
     createdAt = json['created_at'];
   }
 }

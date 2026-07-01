@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class ChosenShippingMethodModel {
   int? _id;
   String? _cartGroupId;
@@ -33,13 +34,13 @@ class ChosenShippingMethodModel {
   int? get isCheckItemExist => _isCheckItemExist;
 
   ChosenShippingMethodModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _cartGroupId = json['cart_group_id'];
-    _shippingMethodId = int.parse(json['shipping_method_id'].toString());
+    _shippingMethodId = double.parse(json['shipping_method_id'].toString()).toInt();
     _shippingCost = double.parse(json['shipping_cost'].toString());
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _isCheckItemExist = json['is_check_item_exist'];
+    _isCheckItemExist = parseInt(json['is_check_item_exist']);
   }
 
   Map<String, dynamic> toJson() {

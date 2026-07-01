@@ -1,5 +1,6 @@
-﻿import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class CategoryModel {
   int? _id;
@@ -56,12 +57,12 @@ class CategoryModel {
   int? get totalProductCount => _totalProductCount;
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _name = json['name'];
     _slug = json['slug'];
     _icon = json['icon'];
-    _parentId = json['parent_id'];
-    _position = json['position'];
+    _parentId = parseInt(json['parent_id']);
+    _position = parseInt(json['position']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
     if (json['childes'] != null) {
@@ -158,12 +159,12 @@ class SubCategory {
   int? get totalProductCount => _totalProductCount;
 
   SubCategory.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _name = json['name'];
     _slug = json['slug'];
     _icon = json['icon'];
-    _parentId = json['parent_id'];
-    _position = json['position'];
+    _parentId = parseInt(json['parent_id']);
+    _position = parseInt(json['position']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
     if (json['childes'] != null) {
@@ -242,12 +243,12 @@ class SubSubCategory {
   int? get totalProductCount => _totalProductCount;
 
   SubSubCategory.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _name = json['name'];
     _slug = json['slug'];
     _icon = json['icon'];
-    _parentId = json['parent_id'];
-    _position = json['position'];
+    _parentId = parseInt(json['parent_id']);
+    _position = parseInt(json['position']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
 

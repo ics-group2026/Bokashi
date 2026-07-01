@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class SelectedShippingType {
   int? _sellerId;
   String? _selectedShippingType;
@@ -15,7 +16,7 @@ class SelectedShippingType {
   String? get selectedShippingType => _selectedShippingType;
 
   SelectedShippingType.fromJson(Map<String, dynamic> json) {
-    _sellerId = json['sellerId'];
+    _sellerId = parseInt(json['sellerId']);
     _selectedShippingType = json['selectedShippingType'];
   }
 

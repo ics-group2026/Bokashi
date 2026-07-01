@@ -1,5 +1,6 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/shop/domain/enums/vacation_duration_type.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ChatModel {
   int? totalSize;
@@ -10,7 +11,7 @@ class ChatModel {
   ChatModel({this.totalSize, this.limit, this.offset, this.chat});
 
   ChatModel.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
+    totalSize = parseInt(json['total_size']);
     limit = json['limit'];
     offset = json['offset'];
     if (json['chat'] != null) {
@@ -60,12 +61,12 @@ class Chat {
       });
 
   Chat.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    sellerId = json['seller_id'];
-    adminId = json['admin_id'];
+    id = parseInt(json['id']);
+    userId = parseInt(json['user_id']);
+    sellerId = parseInt(json['seller_id']);
+    adminId = parseInt(json['admin_id']);
     if(json['delivery_man_id'] != null){
-      deliveryManId = int.parse(json['delivery_man_id'].toString());
+      deliveryManId = double.parse(json['delivery_man_id'].toString()).toInt();
     }
 
     message = json['message'];
@@ -78,7 +79,7 @@ class Chat {
     updatedAt = json['updated_at'];
     sellerInfo = json['seller_info'] != null ? SellerInfo.fromJson(json['seller_info']) : null;
     deliveryMan = json['delivery_man'] != null ? DeliveryMan.fromJson(json['delivery_man']) : null;
-    unseenMessageCount = json['unseen_message_count'];
+    unseenMessageCount = parseInt(json['unseen_message_count']);
 
   }
 
@@ -144,8 +145,8 @@ class Shops {
       });
 
   Shops.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    sellerId = int.parse(json['seller_id'].toString());
+    id = parseInt(json['id']);
+    sellerId = double.parse(json['seller_id'].toString()).toInt();
     name = json['name'];
     address = json['address'];
     contact = json['contact'];
@@ -200,7 +201,7 @@ class DeliveryMan {
   });
 
   DeliveryMan.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     fName = json['f_name'];
     lName = json['l_name'];
     image = json['image'];

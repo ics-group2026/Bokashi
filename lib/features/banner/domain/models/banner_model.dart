@@ -1,5 +1,6 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class BannerModel {
   int? id;
@@ -37,15 +38,15 @@ class BannerModel {
       });
 
   BannerModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     photo = json['photo'];
     bannerType = json['banner_type'];
-    published = json['published'];
+    published = parseInt(json['published']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     url = json['url'];
     resourceType = json['resource_type'];
-    resourceId = json['resource_id'];
+    resourceId = parseInt(json['resource_id']);
     title = json['title'];
     subTitle = json['sub_title'];
     buttonText = json['button_text'];

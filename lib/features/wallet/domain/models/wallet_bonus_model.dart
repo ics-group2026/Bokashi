@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class WalletBonusModel {
   List<BonusList>? bonusList;
 
@@ -44,13 +45,13 @@ class BonusList {
         this.updatedAt});
 
   BonusList.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     title = json['title'];
     description = json['description'];
     bonusType = json['bonus_type'];
-    bonusAmount = json['bonus_amount'].toDouble();
-    minAddMoneyAmount = json['min_add_money_amount'].toDouble();
-    maxBonusAmount = json['max_bonus_amount'].toDouble();
+    bonusAmount = parseDouble(json['bonus_amount']);
+    minAddMoneyAmount = parseDouble(json['min_add_money_amount']);
+    maxBonusAmount = parseDouble(json['max_bonus_amount']);
     startDateTime = json['start_date_time'];
     endDateTime = json['end_date_time'];
     isActive = json['is_active']? 1 : 0;

@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class PredictionListModel {
   List<Suggestions>? suggestions;
 
@@ -108,7 +109,7 @@ class Matches {
   Matches({this.endOffset});
 
   Matches.fromJson(Map<String, dynamic> json) {
-    endOffset = json['endOffset'];
+    endOffset = parseInt(json['endOffset']);
   }
 
   Map<String, dynamic> toJson() {

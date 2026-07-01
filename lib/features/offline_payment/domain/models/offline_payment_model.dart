@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class OfflinePaymentModel {
   List<OfflineMethods>? offlineMethods;
 
@@ -33,7 +34,7 @@ class OfflineMethods {
         this.updatedAt});
 
   OfflineMethods.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     methodName = json['method_name'];
     if (json['method_fields'] != null) {
       methodFields = <MethodFields>[];
@@ -47,7 +48,7 @@ class OfflineMethods {
         methodInformations!.add(MethodInformations.fromJson(v));
       });
     }
-    status = int.parse(json['status'].toString());
+    status = double.parse(json['status'].toString()).toInt();
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -79,7 +80,7 @@ class MethodInformations {
   MethodInformations.fromJson(Map<String, dynamic> json) {
     customerInput = json['customer_input'];
     customerPlaceholder = json['customer_placeholder'];
-    isRequired = json['is_required'];
+    isRequired = parseInt(json['is_required']);
   }
 
 }

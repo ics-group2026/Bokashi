@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/helper/date_converter.dart';
+import 'package:bokashi/helper/date_converter.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class WalletTransactionModel {
   int? limit;
@@ -117,13 +118,13 @@ class WalletTransactionList {
   String? get updatedAt => _updatedAt;
 
   WalletTransactionList.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _userId = json['user_id'];
+    _id = parseInt(json['id']);
+    _userId = parseInt(json['user_id']);
     _transactionId = json['transaction_id'];
-    _credit = json['credit'].toDouble();
-    _debit = json['debit'].toDouble();
-    _adminBonus = json['admin_bonus'].toDouble();
-    _balance = json['balance'].toDouble();
+    _credit = parseDouble(json['credit']);
+    _debit = parseDouble(json['debit']);
+    _adminBonus = parseDouble(json['admin_bonus']);
+    _balance = parseDouble(json['balance']);
     _transactionType = json['transaction_type'];
     _reference = json['reference'];
     _createdAt = json['created_at'];

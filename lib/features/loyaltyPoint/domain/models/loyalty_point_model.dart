@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/helper/date_converter.dart';
+import 'package:bokashi/helper/date_converter.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class LoyaltyPointModel {
   int? limit;
@@ -116,12 +117,12 @@ class LoyaltyPointList {
 
 
   LoyaltyPointList.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _userId = json['user_id'];
+    _id = parseInt(json['id']);
+    _userId = parseInt(json['user_id']);
     _transactionId = json['transaction_id'];
     _credit =  double.tryParse(json['credit'].toString());
     _debit = double.tryParse(json['debit'].toString());
-    _balance = json['balance'].toDouble();
+    _balance = parseDouble(json['balance']);
     _reference = json['reference'];
     _transactionType = json['transaction_type'];
     _createdAt = json['created_at'];

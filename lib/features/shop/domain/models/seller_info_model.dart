@@ -1,5 +1,6 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/shop/domain/enums/vacation_duration_type.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class SellerInfoModel {
   Seller? _seller;
@@ -42,12 +43,12 @@ class SellerInfoModel {
     _seller =
     json['seller'] != null ? Seller.fromJson(json['seller']) : null;
     _avgRating = json['avg_rating'].toString();
-    _totalReview = json['total_review'];
-    _totalOrder = json['total_order'];
-    _totalProduct = json['total_product'];
+    _totalReview = parseInt(json['total_review']);
+    _totalOrder = parseInt(json['total_order']);
+    _totalProduct = parseInt(json['total_product']);
     if(json['minimum_order_amount'] != null){
       try{
-        minimumOrderAmount = json['minimum_order_amount'].toDouble();
+        minimumOrderAmount = parseDouble(json['minimum_order_amount']);
       }catch(e){
         minimumOrderAmount = double.parse(json['minimum_order_amount'].toString());
       }
@@ -113,7 +114,7 @@ class Seller {
   Shop? get shop => _shop;
 
   Seller.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _fName = json['f_name'];
     _lName = json['l_name'];
     _phone = json['phone'];
@@ -227,8 +228,8 @@ class Shop {
 
 
   Shop.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _sellerId = int.parse(json['seller_id'].toString());
+    _id = parseInt(json['id']);
+    _sellerId = double.parse(json['seller_id'].toString()).toInt();
     _name = json['name'];
     _address = json['address'];
     _contact = json['contact'];

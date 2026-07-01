@@ -1,5 +1,6 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class WishlistModel {
   int? id;
@@ -18,9 +19,9 @@ class WishlistModel {
         this.productFullInfo});
 
   WishlistModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    customerId = json['customer_id'];
-    productId = json['product_id'];
+    id = parseInt(json['id']);
+    customerId = parseInt(json['customer_id']);
+    productId = parseInt(json['product_id']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     productFullInfo = json['product_full_info'] != null ? Product.fromJson(json['product_full_info']) : null;
@@ -127,51 +128,51 @@ class ProductFullInfo {
         });
 
   ProductFullInfo.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     addedBy = json['added_by'];
-    userId = json['user_id'];
+    userId = parseInt(json['user_id']);
     name = json['name'];
     slug = json['slug'];
     productType = json['product_type'];
-    brandId = json['brand_id'];
+    brandId = parseInt(json['brand_id']);
     unit = json['unit'];
-    minQty = json['min_qty'];
-    refundable = json['refundable'];
+    minQty = parseInt(json['min_qty']);
+    refundable = parseInt(json['refundable']);
     colorImage = json['color_image'];
     thumbnail = json['thumbnail'];
-    featured = json['featured'];
+    featured = parseInt(json['featured']);
     videoProvider = json['video_provider'];
     colors = json['colors'];
     variantProduct = int.tryParse(json['variant_product'].toString());
     attributes = json['attributes'];
     choiceOptions = json['choice_options'];
     variation = json['variation'];
-    published = json['published'];
-    unitPrice = json['unit_price'].toDouble();
+    published = parseInt(json['published']);
+    unitPrice = parseDouble(json['unit_price']);
     purchasePrice = double.parse(json['purchase_price'].toString());
     tax = json['tax'] != null ?
       double.parse(json['tax'].toString()) : null;
     taxType = json['tax_type'];
     taxModel = json['tax_model'];
-    discount = json['discount'].toDouble();
+    discount = parseDouble(json['discount']);
     discountType = json['discount_type'];
-    currentStock = json['current_stock'];
-    minimumOrderQty = int.parse(json['minimum_order_qty'].toString());
+    currentStock = parseInt(json['current_stock']);
+    minimumOrderQty = double.parse(json['minimum_order_qty'].toString()).toInt();
     details = json['details'];
-    freeShipping = json['free_shipping'];
+    freeShipping = parseInt(json['free_shipping']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    status = json['status'];
-    featuredStatus = json['featured_status'];
+    status = parseInt(json['status']);
+    featuredStatus = parseInt(json['featured_status']);
     metaTitle = json['meta_title'];
     metaDescription = json['meta_description'];
     metaImage = json['meta_image'];
-    requestStatus = int.parse(json['request_status'].toString());
+    requestStatus = double.parse(json['request_status'].toString()).toInt();
     shippingCost = double.parse(json['shipping_cost'].toString());
-    multiplyQty = json['multiply_qty'];
+    multiplyQty = parseInt(json['multiply_qty']);
     code = json['code'];
     if(json['reviews_count'] != null){
-      reviewsCount = int.parse(json['reviews_count'].toString());
+      reviewsCount = double.parse(json['reviews_count'].toString()).toInt();
     }else{
       reviewsCount = 0;
     }

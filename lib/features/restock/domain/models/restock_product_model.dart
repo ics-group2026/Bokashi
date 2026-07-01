@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 
 class RestockProductModel {
@@ -16,7 +17,7 @@ class RestockProductModel {
         data!.add(Data.fromJson(v));
       });
     }
-    totalSize = json['total_size'];
+    totalSize = parseInt(json['total_size']);
     limit = json['limit'];
     offset = json['offset'];
   }
@@ -56,13 +57,13 @@ class Data {
         this.product});
 
   Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    productId = json['product_id'];
+    id = parseInt(json['id']);
+    productId = parseInt(json['product_id']);
     variant = json['variant'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     fcmTopic = json['fcm_topic'];
-    restockProductCustomersCount = json['restock_product_customers_count'];
+    restockProductCustomersCount = parseInt(json['restock_product_customers_count']);
     product =
     json['product'] != null ? Product.fromJson(json['product']) : null;
   }

@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class ShippingMethodModel {
   int? id;
   String? creatorType;
@@ -19,12 +20,12 @@ class ShippingMethodModel {
 
 
   ShippingMethodModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     creatorType = json['creator_type'];
     title = json['title'];
     if(json['cost'] != null){
       try{
-        cost = json['cost'].toDouble();
+        cost = parseDouble(json['cost']);
       }catch(e){
         cost = double.parse(json['cost'].toString());
       }

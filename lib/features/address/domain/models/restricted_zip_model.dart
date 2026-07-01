@@ -1,10 +1,11 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class RestrictedZipModel {
   int? id;
   String? zipcode;
   RestrictedZipModel({this.id, this.zipcode});
 
   RestrictedZipModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     zipcode = json['zipcode'];
   }
 

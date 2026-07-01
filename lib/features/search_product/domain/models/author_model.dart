@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class AuthorModel {
   int? id;
   String? name;
@@ -8,7 +9,7 @@ class AuthorModel {
   AuthorModel({this.id, this.name, this.createdAt, this.updatedAt});
 
   AuthorModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

@@ -1,9 +1,10 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/shop/domain/enums/vacation_duration_type.dart';
 import 'package:bokashi/features/splash/controllers/splash_controller.dart';
 import 'package:bokashi/main.dart';
 import 'package:provider/provider.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class SellerModel {
   int? totalSize;
@@ -14,9 +15,9 @@ class SellerModel {
   SellerModel({this.totalSize, this.limit, this.offset, this.sellers});
 
   SellerModel.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
-    limit = json['limit'];
-    offset = json['offset'];
+    totalSize = parseInt(json['total_size']);
+    limit = parseInt(json['limit']);
+    offset = parseInt(json['offset']);
     if (json['sellers'] != null) {
       sellers = <Seller>[];
       json['sellers'].forEach((v) {
@@ -81,7 +82,7 @@ class Seller {
       });
 
   Seller.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     fName = json['f_name'];
     lName = json['l_name'];
     phone = json['phone'];
@@ -94,14 +95,14 @@ class Seller {
     authToken = json['auth_token'];
     gst = json['gst'];
     cmFirebaseToken = json['cm_firebase_token'];
-    posStatus = int.parse(json['pos_status'].toString());
+    posStatus = double.parse(json['pos_status'].toString()).toInt();
     minimumOrderAmount = double.parse(json['minimum_order_amount'].toString());
     freeDeliveryStatus = double.parse(json['free_delivery_status'].toString());
     freeDeliveryOverAmount = double.parse(json['free_delivery_over_amount'].toString());
-    ordersCount = json['orders_count'];
-    productCount = json['product_count'];
-    totalRating = json['total_rating'];
-    ratingCount = json['rating_count'];
+    ordersCount = parseInt(json['orders_count']);
+    productCount = parseInt(json['product_count']);
+    totalRating = parseInt(json['total_rating']);
+    ratingCount = parseInt(json['rating_count']);
     if(json['average_rating'] != null){
       averageRating =  double.tryParse(json['average_rating'].toString());
     }else{
@@ -163,7 +164,7 @@ class Shop {
 
   Shop.fromJson(Map<String, dynamic> json, {bool isAdminProduct = false}) {
     id = isAdminProduct ? 0 : json['id'];
-    sellerId = int.parse(json['seller_id'].toString());
+    sellerId = double.parse(json['seller_id'].toString()).toInt();
     name = json['name'];
     address = json['address'];
     contact = json['contact'];

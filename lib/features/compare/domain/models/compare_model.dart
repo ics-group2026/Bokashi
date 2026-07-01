@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 
 class CompareModel {
@@ -33,9 +34,9 @@ class CompareLists {
         this.product});
 
   CompareLists.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userId = json['user_id'];
-    productId = json['product_id'];
+    id = parseInt(json['id']);
+    userId = parseInt(json['user_id']);
+    productId = parseInt(json['product_id']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     product =

@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class SupportTicketModel {
   int? _id;
   int? _customerId;
@@ -45,8 +46,8 @@ class SupportTicketModel {
   String? get updatedAt => _updatedAt;
 
   SupportTicketModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _customerId = json['customer_id'];
+    _id = parseInt(json['id']);
+    _customerId = parseInt(json['customer_id']);
     _subject = json['subject'];
     _type = json['type'];
     _priority = json['priority'];

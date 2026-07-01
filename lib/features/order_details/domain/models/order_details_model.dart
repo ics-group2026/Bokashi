@@ -1,8 +1,9 @@
-﻿
+
 import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/product/domain/models/product_model.dart';
 import 'package:bokashi/features/product_details/domain/models/product_details_model.dart';
 import 'package:bokashi/features/shop/domain/models/seller_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class OrderDetailsModel {
   int? _id;
@@ -125,28 +126,28 @@ class OrderDetailsModel {
 
 
   OrderDetailsModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
-    _orderId = json['order_id'];
-    _productId = json['product_id'];
-    _sellerId = json['seller_id'];
+    _id = parseInt(json['id']);
+    _orderId = parseInt(json['order_id']);
+    _productId = parseInt(json['product_id']);
+    _sellerId = parseInt(json['seller_id']);
     if(json['digital_file_after_sell'] != null) {
       _digitalFileAfterSell = json['digital_file_after_sell'];
     }
     if(json['product_details'] != null) {
       _productDetails = Product.fromJson(json['product_details']);
     }
-    _qty = json['qty'];
-    _price = json['price'].toDouble();
-    _tax = json['tax'].toDouble();
+    _qty = parseInt(json['qty']);
+    _price = parseDouble(json['price']);
+    _tax = parseDouble(json['tax']);
     _taxModel = json['tax_model'];
-    _discount = json['discount'].toDouble();
+    _discount = parseDouble(json['discount']);
     _deliveryStatus = json['delivery_status'];
     _paymentStatus = json['payment_status'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _shippingMethodId = json['shipping_method_id'];
+    _shippingMethodId = parseInt(json['shipping_method_id']);
     _variant = json['variant'];
-    _refundReq = json['refund_request'];
+    _refundReq = parseInt(json['refund_request']);
     _seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
     if (json['verification_images'] != null) {
       verificationImages = <VerificationImages>[];
@@ -201,8 +202,8 @@ class VerificationImages {
       {this.id, this.orderId, this.image, this.imageFullUrl, this.createdAt, this.updatedAt});
 
   VerificationImages.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    orderId = json['order_id'];
+    id = parseInt(json['id']);
+    orderId = parseInt(json['order_id']);
     image = json['image'];
     imageFullUrl = json['image_full_url'] != null
       ? ImageFullUrl.fromJson(json['image_full_url'])
@@ -224,7 +225,7 @@ class Order {
 
   Order.fromJson(Map<String, dynamic> json) {
     try{
-      isShippingFree = int.parse(json['is_shipping_free'].toString());
+      isShippingFree = double.parse(json['is_shipping_free'].toString()).toInt();
     }catch(e){
       isShippingFree = json['is_shipping_free']?1:0;
     }

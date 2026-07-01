@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class ImageFullUrl {
   String? key;
   String? path;
@@ -8,7 +9,7 @@ class ImageFullUrl {
   ImageFullUrl.fromJson(Map<String, dynamic> json) {
     key = json['key'];
     path = json['path'];
-    status = json['status'];
+    status = parseInt(json['status']);
     if(status != 200){
       path = '';
     }

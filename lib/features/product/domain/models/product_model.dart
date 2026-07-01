@@ -1,7 +1,8 @@
-﻿import 'dart:convert';
+import 'dart:convert';
 
 import 'package:bokashi/data/model/image_full_url.dart';
 import 'package:bokashi/features/product_details/domain/models/product_details_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class ProductModel {
   int? totalSize;
@@ -24,9 +25,9 @@ class ProductModel {
   List<Product>? get products => _products;
 
   ProductModel.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
-    limit = int.parse(json['limit'].toString());
-    offset = int.parse(json['offset'].toString());
+    totalSize = parseInt(json['total_size']);
+    limit = double.parse(json['limit'].toString()).toInt();
+    offset = double.parse(json['offset'].toString()).toInt();
     if (json['min_price'] != null) {
       minPrice =  double.parse(json['min_price'].toString());
     }
@@ -254,9 +255,9 @@ class Product {
   String? get reviewsAvgRating => _reviewsAvgRating;
 
   Product.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _addedBy = json['added_by'];
-    _userId = json['user_id'];
+    _userId = parseInt(json['user_id']);
     _name = json['name'];
     _slug = json['slug'];
     _productType = json['product_type'];
@@ -273,10 +274,10 @@ class Product {
       }
     }
     _unit = json['unit'];
-    _minQty = json['min_qty'];
+    _minQty = parseInt(json['min_qty']);
 
     if(json['refundable']!=null){
-      _refundable = int.parse(json['refundable'].toString());
+      _refundable = double.parse(json['refundable'].toString()).toInt();
     }
     if(json['digital_product_type']!=null){
       _digitalProductType = json['digital_product_type'];
@@ -345,14 +346,14 @@ class Product {
       }
     }
     if(json['unit_price'] != null){
-      _unitPrice = json['unit_price'].toDouble();
+      _unitPrice = parseDouble(json['unit_price']);
     }
     if(json['purchase_price']!=null){
-      _purchasePrice = json['purchase_price'].toDouble();
+      _purchasePrice = parseDouble(json['purchase_price']);
     }
 
     if(json['tax'] != null){
-      _tax = json['tax'].toDouble();
+      _tax = parseDouble(json['tax']);
     }
 
     if(json['tax_model'] != null){
@@ -363,7 +364,7 @@ class Product {
 
     _taxType = json['tax_type'];
     if(json['discount'] != null ){
-      _discount = json['discount'].toDouble();
+      _discount = parseDouble(json['discount']);
     }
     _discountType = json['discount_type'];
     _currentStock = json['current_stock'] == null ? 0 : double.parse(json['current_stock'].toString()).toInt();
@@ -390,7 +391,7 @@ class Product {
     _videoUrl = json['video_url'];
     if(json['minimum_order_qty'] != null){
       try{
-        _minimumOrderQty = json['minimum_order_qty'];
+        _minimumOrderQty = parseInt(json['minimum_order_qty']);
       }catch(e){
         _minimumOrderQty = double.parse(json['minimum_order_qty'].toString()).toInt();
       }
@@ -400,9 +401,9 @@ class Product {
     }
     if(json['wish_list_count'] != null){
       try{
-        wishList = json['wish_list_count'];
+        wishList = parseInt(json['wish_list_count']);
       }catch(e){
-        wishList = int.parse(json['wish_list_count'].toString());
+        wishList = double.parse(json['wish_list_count'].toString()).toInt();
       }
 
     }
@@ -422,7 +423,7 @@ class Product {
         ? ClearanceSale.fromJson(json['clearance_sale'])
         : null;
 
-    _status = json['status'];
+    _status = parseInt(json['status']);
     if (json['reviews'] != null) {
       _reviews = <Reviews>[];
       json['reviews'].forEach((v) {
@@ -498,7 +499,7 @@ class CategoryIds {
   int? get position => _position;
 
   CategoryIds.fromJson(Map<String, dynamic> json) {
-    _position = json['position'];
+    _position = parseInt(json['position']);
   }
 
 
@@ -578,9 +579,9 @@ class Variation {
 
   Variation.fromJson(Map<String, dynamic> json) {
     _type = json['type'];
-    _price = json['price'].toDouble();
+    _price = parseDouble(json['price']);
     _sku = json['sku'];
-    _qty = json['qty'];
+    _qty = parseInt(json['qty']);
   }
 
   Map<String, dynamic> toJson() {
@@ -652,13 +653,13 @@ class ClearanceSale {
         this.updatedAt});
 
   ClearanceSale.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     addedBy = json['added_by'];
-    productId = json['product_id'];
+    productId = parseInt(json['product_id']);
     setupId = int .tryParse(json['setup_id'].toString());
-    userId = json['user_id'];
-    shopId = json['shop_id'];
-    isActive = json['is_active'];
+    userId = parseInt(json['user_id']);
+    shopId = parseInt(json['shop_id']);
+    isActive = parseInt(json['is_active']);
     discountType = json['discount_type'];
     discountAmount = json['discount_amount'] != null ?
     double.tryParse(json['discount_amount'].toString()) : null;

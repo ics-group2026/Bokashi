@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class RefundInfoModel {
   bool? alreadyRequested;
   bool? expired;
@@ -45,13 +46,13 @@ class Refund {
       });
 
   Refund.fromJson(Map<String, dynamic> json) {
-    productPrice = json['product_price'].toDouble();
-    quntity = json['quntity'];
-    productTotalDiscount = json['product_total_discount'].toDouble();
-    productTotalTax = json['product_total_tax'].toDouble();
-    subtotal = json['subtotal'].toDouble();
-    couponDiscount = json['coupon_discount'].toDouble();
-    refundAmount = json['refund_amount'].toDouble();
+    productPrice = parseDouble(json['product_price']);
+    quntity = parseInt(json['quntity']);
+    productTotalDiscount = parseDouble(json['product_total_discount']);
+    productTotalTax = parseDouble(json['product_total_tax']);
+    subtotal = parseDouble(json['subtotal']);
+    couponDiscount = parseDouble(json['coupon_discount']);
+    refundAmount = parseDouble(json['refund_amount']);
     referralDiscount = double.tryParse(json['referral_discount'].toString()) ?? 0.0;
   }
 

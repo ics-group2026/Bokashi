@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/features/product/domain/models/product_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class HomeCategoryProduct {
   int? id;
@@ -25,12 +26,12 @@ class HomeCategoryProduct {
         this.translations});
 
   HomeCategoryProduct.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
     slug = json['slug'];
     icon = json['icon'];
-    parentId = json['parent_id'];
-    position = json['position'];
+    parentId = parseInt(json['parent_id']);
+    position = parseInt(json['position']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['products'] != null) {

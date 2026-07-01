@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class SuggestionModel {
   List<Products>? products;
 
@@ -21,7 +22,7 @@ class Products {
   Products({this.id, this.name});
 
   Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     name = json['name'];
   }
 

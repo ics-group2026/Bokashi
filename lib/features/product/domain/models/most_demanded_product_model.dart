@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class MostDemandedProductModel {
   int? id;
@@ -29,17 +30,17 @@ class MostDemandedProductModel {
         this.wishlistCount});
 
   MostDemandedProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     banner = json['banner'];
-    productId = json['product_id'];
-    status = json['status'];
+    productId = parseInt(json['product_id']);
+    status = parseInt(json['status']);
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     slug = json['slug'];
-    reviewCount = json['review_count']?? 0;
-    orderCount = json['order_count']?? 0;
-    deliveryCount = json['delivery_count']?? 0;
-    wishlistCount = json['wishlist_count']?? 0;
+    reviewCount = parseInt(json['review_count'], defaultValue: 0);
+    orderCount = parseInt(json['order_count'], defaultValue: 0);
+    deliveryCount = parseInt(json['delivery_count'], defaultValue: 0);
+    wishlistCount = parseInt(json['wishlist_count'], defaultValue: 0);
     bannerFullUrl = json['banner_full_url'] != null
         ? ImageFullUrl.fromJson(json['banner_full_url'])
         : null;

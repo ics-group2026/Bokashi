@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
     class FlashDealModel {
   int? _id;
   String? _title;
@@ -53,7 +54,7 @@
   String? get dealType => _dealType;
 
   FlashDealModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _title = json['title'];
     _startDate = json['start_date'];
     _endDate = json['end_date'];
@@ -63,7 +64,7 @@
     _slug = json['slug'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
-    _productId = json['product_id'];
+    _productId = parseInt(json['product_id']);
     _dealType = json['deal_type'];
   }
 

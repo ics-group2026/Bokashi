@@ -1,5 +1,6 @@
-﻿
+
 import 'package:bokashi/features/shop/domain/models/seller_model.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class CouponItemModel {
   int? totalSize;
@@ -10,9 +11,9 @@ class CouponItemModel {
   CouponItemModel({this.totalSize, this.limit, this.offset, this.coupons});
 
   CouponItemModel.fromJson(Map<String, dynamic> json) {
-    totalSize = json['total_size'];
-    limit = json['limit'];
-    offset = json['offset'];
+    totalSize = parseInt(json['total_size']);
+    limit = parseInt(json['limit']);
+    offset = parseInt(json['offset']);
     if (json['coupons'] != null) {
       coupons = <Coupons>[];
       json['coupons'].forEach((v) {
@@ -61,15 +62,15 @@ class Coupons {
       });
 
   Coupons.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = parseInt(json['id']);
     addedBy = json['added_by'];
     couponType = json['coupon_type'];
     couponBearer = json['coupon_bearer'];
     title = json['title'];
     code = json['code'];
-    sellerId = json['seller_id'];
+    sellerId = parseInt(json['seller_id']);
     if(json['limit'] != null){
-      limit = int.parse(json['limit'].toString());
+      limit = double.parse(json['limit'].toString()).toInt();
     }
 
     seller = json['seller'] != null ? Seller.fromJson(json['seller']) : null;
@@ -77,18 +78,18 @@ class Coupons {
     planExpireDate = json['plain_expire_date'];
     expireDatePlanText = json['plain_expire_date'];
     if(json['discount'] != null){
-      discount = json['discount'].toDouble();
+      discount = parseDouble(json['discount']);
     }
     if(json['min_purchase'] != null){
-      minPurchase = json['min_purchase'].toDouble();
+      minPurchase = parseDouble(json['min_purchase']);
     }
 
     discountType = json['discount_type'];
     if(json['order_count'] != null){
       try{
-        orderCount = json['order_count'];
+        orderCount = parseInt(json['order_count']);
       }catch(e){
-        orderCount = int.parse(json['order_count'].toString());
+        orderCount = double.parse(json['order_count'].toString()).toInt();
       }
     }else{
       orderCount = 0;

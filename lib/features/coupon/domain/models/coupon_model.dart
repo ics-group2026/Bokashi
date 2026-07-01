@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class CouponModel {
   int? _id;
   String? _couponType;
@@ -57,7 +58,7 @@ class CouponModel {
   String? get updatedAt => _updatedAt;
 
   CouponModel.fromJson(Map<String, dynamic> json) {
-    _id = json['id'];
+    _id = parseInt(json['id']);
     _couponType = json['coupon_type'];
     _title = json['title'];
     if(json['code'] != null){
@@ -67,11 +68,11 @@ class CouponModel {
     }
     _startDate = json['start_date'];
     _expireDate = json['expire_date'];
-    _minPurchase = json['min_purchase'].toDouble();
-    _maxDiscount = json['max_discount'].toDouble();
-    _discount = json['discount'].toDouble();
+    _minPurchase = parseDouble(json['min_purchase']);
+    _maxDiscount = parseDouble(json['max_discount']);
+    _discount = parseDouble(json['discount']);
     _discountType = json['discount_type'];
-    _status = json['status'];
+    _status = parseInt(json['status']);
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
   }

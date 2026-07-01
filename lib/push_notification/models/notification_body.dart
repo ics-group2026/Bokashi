@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 
 
 class NotificationBody {
@@ -23,7 +24,7 @@ class NotificationBody {
   });
 
   NotificationBody.fromJson(Map<String, dynamic> json) {
-    orderId = json['order_id'];
+    orderId = parseInt(json['order_id']);
     type = json['type'];
     messageKey = json['message_key'];
     title = json['title'];

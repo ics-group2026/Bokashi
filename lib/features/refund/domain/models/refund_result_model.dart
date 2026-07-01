@@ -1,4 +1,5 @@
-﻿import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/data/model/image_full_url.dart';
+import 'package:bokashi/helper/parse_helper.dart';
 
 class RefundResultModel {
   double? productPrice;
@@ -21,13 +22,13 @@ class RefundResultModel {
         this.refundRequest});
 
   RefundResultModel.fromJson(Map<String, dynamic> json) {
-    productPrice = json['product_price'].toDouble();
-    quntity = json['quntity'];
-    productTotalDiscount = json['product_total_discount'].toDouble();
-    productTotalTax = json['product_total_tax'].toDouble();
-    subtotal = json['subtotal'].toDouble();
-    couponDiscount = json['coupon_discount'].toDouble();
-    refundAmount = json['refund_amount'].toDouble();
+    productPrice = parseDouble(json['product_price']);
+    quntity = parseInt(json['quntity']);
+    productTotalDiscount = parseDouble(json['product_total_discount']);
+    productTotalTax = parseDouble(json['product_total_tax']);
+    subtotal = parseDouble(json['subtotal']);
+    couponDiscount = parseDouble(json['coupon_discount']);
+    refundAmount = parseDouble(json['refund_amount']);
     if (json['refund_request'] != null) {
       refundRequest = <RefundRequest>[];
       json['refund_request'].forEach((v) {
@@ -93,13 +94,13 @@ class RefundRequest {
       });
 
   RefundRequest.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    orderDetailsId = json['order_details_id'];
-    customerId = json['customer_id'];
+    id = parseInt(json['id']);
+    orderDetailsId = parseInt(json['order_details_id']);
+    customerId = parseInt(json['customer_id']);
     status = json['status'];
-    amount = json['amount'].toDouble();
-    productId = json['product_id'];
-    orderId = json['order_id'];
+    amount = parseDouble(json['amount']);
+    productId = parseInt(json['product_id']);
+    orderId = parseInt(json['order_id']);
     refundReason = json['refund_reason'];
     if(json['images'] != null){
       images = List<String>.from(json['images'].map((image) => image['image_name'] ?? ''));
@@ -169,15 +170,15 @@ class RefundStatus {
         this.updatedAt});
 
   RefundStatus.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    refundRequestId = json['refund_request_id'];
+    id = parseInt(json['id']);
+    refundRequestId = parseInt(json['refund_request_id']);
     changeBy = json['change_by'];
     if(json['change_by_id']!=null)
     {
       try{
-        changeById = json['change_by_id'];
+        changeById = parseInt(json['change_by_id']);
       }catch(e){
-        changeById = int.parse(json['change_by_id']);
+        changeById = double.parse(json['change_by_id'].toString()).toInt();
       }
     }
 

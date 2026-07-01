@@ -1,3 +1,4 @@
+import 'package:bokashi/helper/parse_helper.dart';
 class PlaceDetailsModel {
   String? name;
   String? id;
@@ -56,7 +57,7 @@ class PlaceDetailsModel {
         ? Viewport.fromJson(json['viewport'])
         : null;
     googleMapsUri = json['googleMapsUri'];
-    utcOffsetMinutes = json['utcOffsetMinutes'];
+    utcOffsetMinutes = parseInt(json['utcOffsetMinutes']);
     adrFormatAddress = json['adrFormatAddress'];
     iconMaskBaseUri = json['iconMaskBaseUri'];
     iconBackgroundColor = json['iconBackgroundColor'];
@@ -151,8 +152,8 @@ class Location {
   Location({this.latitude, this.longitude});
 
   Location.fromJson(Map<String, dynamic> json) {
-    latitude = json['latitude'];
-    longitude = json['longitude'];
+    latitude = parseDouble(json['latitude']);
+    longitude = parseDouble(json['longitude']);
   }
 
   Map<String, dynamic> toJson() {
@@ -223,8 +224,8 @@ class Photos {
 
   Photos.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    widthPx = json['widthPx'];
-    heightPx = json['heightPx'];
+    widthPx = parseInt(json['widthPx']);
+    heightPx = parseInt(json['heightPx']);
     if (json['authorAttributions'] != null) {
       authorAttributions = <AuthorAttributions>[];
       json['authorAttributions'].forEach((v) {
