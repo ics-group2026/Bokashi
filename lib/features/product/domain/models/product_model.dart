@@ -366,7 +366,7 @@ class Product {
       _discount = json['discount'].toDouble();
     }
     _discountType = json['discount_type'];
-    _currentStock = json['current_stock']??0;
+    _currentStock = json['current_stock'] == null ? 0 : int.parse(json['current_stock'].toString());
     _details = json['details'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
