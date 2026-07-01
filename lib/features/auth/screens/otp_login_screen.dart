@@ -1,5 +1,4 @@
 ﻿import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:bokashi/common/basewidget/custom_asset_image_widget.dart';
 import 'package:bokashi/common/basewidget/custom_button_widget.dart';
@@ -259,10 +258,14 @@ class _OtpLoginScreenState extends State<OtpLoginScreen> {
 
 
 bool _isShowSocialLoginButton (ConfigModel configModel, SocialMediaLoginOptions? socialStatus){
+  // Social login disabled on iOS
+  if (!isSocialLoginEnabledOnPlatform) return false;
+
   return (configModel.customerLogin?.loginOption?.socialMediaLogin == 1)
       && (configModel.customerLogin?.loginOption?.manualLogin != 1)
-      && ( (socialStatus?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
-          || socialStatus?.google == 1
-          || socialStatus?.facebook == 1
-      );
+      && (socialStatus?.google == 1);
+      // Facebook login disabled
+      // || socialStatus?.facebook == 1
+      // Apple login disabled on iOS
+      // || (socialStatus?.apple == 1 && defaultTargetPlatform == TargetPlatform.iOS)
 }

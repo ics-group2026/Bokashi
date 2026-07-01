@@ -15,6 +15,7 @@ import 'package:bokashi/features/more/widgets/profile_info_section_widget.dart';
 import 'package:bokashi/features/more/widgets/more_horizontal_section_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:bokashi/features/more/widgets/title_button_widget.dart';
+import 'package:bokashi/features/profile/widgets/delete_account_bottom_sheet_widget.dart';
 
 
 class MoreScreen extends StatefulWidget {
@@ -289,6 +290,23 @@ class _MoreScreenState extends State<MoreScreen> {
                       }
                     },
                   ),
+
+                  if(authController.isLoggedIn())
+                    ListTile(
+                      leading: SizedBox(width: 30, child: Icon(Icons.delete_outline_rounded, color: Theme.of(context).colorScheme.error, size: 30)),
+                      title: Text(
+                        getTranslated('delete_account', context)!,
+                        style: titilliumRegular.copyWith(
+                          fontSize: Dimensions.fontSizeLarge,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                      onTap: () => showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (_) => const DeleteAccountBottomSheet(),
+                      ),
+                    ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeDefault),
