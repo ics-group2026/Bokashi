@@ -120,6 +120,8 @@ class ShopInfoWidget extends StatelessWidget {
                           Expanded(child: Text(sellerName, style: textMedium.copyWith(fontSize: Dimensions.fontSizeLarge, color: Theme.of(context).textTheme.bodyLarge?.color),
                             maxLines: 2, overflow: TextOverflow.ellipsis,),),
 
+                          // Chat feature hidden by request: chat-with-shop button removed.
+                          /*
                           Padding(padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                             child: InkWell(onTap: () {
                               if(temporaryClose) {
@@ -159,7 +161,9 @@ class ShopInfoWidget extends StatelessWidget {
                                 }
                               }
                             }, child : const CustomAssetImageWidget(Images.storeChatIcon, height: 20, width: 20)),
-                          )]),
+                          )
+                          */
+                          ]),
 
 
                         ((sellerProvider.sellerInfoModel != null) || (rating != null && totalProduct != null && totalReview != null)) ?

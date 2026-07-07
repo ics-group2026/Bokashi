@@ -113,6 +113,8 @@ class StatusStepperWidget extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
+                    // Chat feature hidden by request: chat-with-delivery-man button removed (call button kept).
+                    /*
                     InkWell(
                       onTap: () {
                         Provider.of<ChatController>(context, listen: false).setUserTypeIndex(context, 0);
@@ -133,6 +135,7 @@ class StatusStepperWidget extends StatelessWidget {
                     Container(height: 20, width: 1, color: Theme.of(context).colorScheme.onPrimary.withValues(alpha: 0.35) ),
 
                     SizedBox(width: Dimensions.paddingSizeSmall),
+                    */
                     InkWell(
                       onTap: ()=> _launchUrl("tel:$phone"),
                       child: CustomAssetImageWidget(Images.deliverymanCallIcon, height: 20, width: 20)

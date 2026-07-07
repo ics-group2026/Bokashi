@@ -95,6 +95,8 @@ class SplashScreenState extends State<SplashScreen> {
             } else if (widget.body!.type == 'wallet') {
               RouterHelper.getWalletRoute(
                   action: RouteAction.pushReplacement, isBackButtonExist: true);
+            // Chat feature hidden by request: chatting notifications fall through to the generic notification screen.
+            /*
             } else if (widget.body!.type == 'chatting') {
               RouterHelper.getInboxScreenRoute(
                 action: RouteAction.pushReplacement,
@@ -105,6 +107,7 @@ class SplashScreenState extends State<SplashScreen> {
                         ? 0
                         : 1,
               );
+            */
             } else if (widget.body!.type == 'product_restock_update') {
               RouterHelper.getProductDetailsRoute(
                   action: RouteAction.pushReplacement,
@@ -197,6 +200,8 @@ class SplashScreenState extends State<SplashScreen> {
           } else if (widget.body!.type == 'wallet') {
             RouterHelper.getWalletRoute(
                 action: RouteAction.pushReplacement, isBackButtonExist: true);
+          // Chat feature hidden by request: chatting notifications fall through to the generic notification screen.
+          /*
           } else if (widget.body!.type == 'chatting') {
             RouterHelper.getInboxScreenRoute(
               action: RouteAction.push,
@@ -206,6 +211,7 @@ class SplashScreenState extends State<SplashScreen> {
                   ? 0
                   : 1,
             );
+          */
           } else if (widget.body!.type == 'product_restock_update') {
             RouterHelper.getProductDetailsRoute(
                 action: RouteAction.push,

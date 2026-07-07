@@ -49,6 +49,8 @@ class NotificationHelper {
             );
           } else if(payload.type == 'wallet') {
             RouterHelper.getWalletRoute(action: RouteAction.pushReplacement, isBackButtonExist: true);
+          // Chat feature hidden by request: chatting notifications fall through to the generic notification screen.
+          /*
           } else if(payload.type == 'chatting') {
             RouterHelper.getInboxScreenRoute(
               action: RouteAction.pushReplacement,
@@ -56,6 +58,7 @@ class NotificationHelper {
               initIndex: payload.messageKey == 'message_from_delivery_man' ? 0 : 1,
               fromNotification: true,
             );
+          */
           } else if(payload.type == 'product_restock_update') {
             RouterHelper.getProductDetailsRoute(action: RouteAction.pushReplacement, productId: int.parse(payload.productId!), slug: payload.slug, isNotification: true);
           } else if(payload.type == 'referral_code_used'){
@@ -140,6 +143,8 @@ class NotificationHelper {
             RouterHelper.getWalletRoute(action: RouteAction.pushReplacement, isBackButtonExist: true);
           } else if(notificationBody.type == 'notification') {
             RouterHelper.getNotificationRoute(action: RouteAction.pushReplacement, fromNotification: true);
+          // Chat feature hidden by request: chatting notifications fall through to the generic notification screen.
+          /*
           } else if(notificationBody.type == 'chatting') {
             RouterHelper.getInboxScreenRoute(
               action: RouteAction.pushReplacement,
@@ -147,6 +152,7 @@ class NotificationHelper {
               fromNotification: true,
               initIndex: notificationBody.messageKey == 'message_from_delivery_man' ? 0 : 1,
             );
+          */
           } else if(notificationBody.type == 'product_restock_update') {
             RouterHelper.getProductDetailsRoute(action: RouteAction.pushReplacement, productId: int.parse(notificationBody.productId!), slug: notificationBody.slug, isNotification: true);
           } else {

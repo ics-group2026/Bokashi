@@ -864,7 +864,8 @@ class RouterHelper {
       GoRoute(path: dashboardScreen, builder: (context, state) {
         String? page =  state.uri.queryParameters['page'];
         return DashBoardScreen(
-          pageIndex: page == 'home' ? 0 : page == 'inbox' ? 1 : page == 'cart' ? 2 : page == 'orders' ? 3 : page == 'more' ? 4 : 0,
+          // Chat feature hidden by request: inbox tab removed, so indices shifted (cart 1, orders 2, more 3).
+          pageIndex: page == 'home' ? 0 : page == 'cart' ? 1 : page == 'orders' ? 2 : page == 'more' ? 3 : 0,
         );
       }),
 
