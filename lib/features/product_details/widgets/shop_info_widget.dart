@@ -140,6 +140,8 @@ class _ShopInfoWidgetState extends State<ShopInfoWidget> {
                         )
                       )),
 
+                      // Chat feature hidden by request: chat-with-seller button removed.
+                      /*
                       SizedBox(width: Dimensions.paddingSizeExtraSmall),
 
                       InkWell(
@@ -184,6 +186,7 @@ class _ShopInfoWidgetState extends State<ShopInfoWidget> {
                           child: const CustomAssetImageWidget(Images.storeChatIcon, height: 20, width: 20)
                         ),
                       ),
+                      */
                     ]),
 
                     const SizedBox(height: Dimensions.paddingSizeExtraSmall),

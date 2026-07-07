@@ -82,7 +82,8 @@ class DashBoardScreenState extends State<DashBoardScreen> {
             ? const AsterThemeHomeScreen(): const FashionThemeHomePage(),
         ),
 
-        NavigationModel(name: 'inbox', icon: Images.messageImage, screen: InboxScreen(fromDashboard: true)),
+        // Chat feature hidden by request: inbox tab removed from bottom navigation.
+        // NavigationModel(name: 'inbox', icon: Images.messageImage, screen: InboxScreen(fromDashboard: true)),
         NavigationModel(name: 'cart', icon: Images.cartArrowDownImage, screen: const CartScreen(showBackButton: false, fromDashboard: true), showCartIcon: true),
         NavigationModel(name: 'orders', icon: Images.shoppingImage, screen:  const OrderScreen(isBacButtonExist: false, fromDashboard: true)),
         NavigationModel(name: 'more', icon: Images.moreImage, screen:  const MoreScreen()),

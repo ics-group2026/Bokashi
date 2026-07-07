@@ -43,6 +43,8 @@ class CallAndChatWidget extends StatelessWidget {
           ),
         ),
 
+        // Chat feature hidden by request: chat button removed (call button kept).
+        /*
         InkWell(
           onTap: (){
             Provider.of<ChatController>(context, listen: false).setUserTypeIndex(context, 1);
@@ -80,6 +82,7 @@ class CallAndChatWidget extends StatelessWidget {
             ),
           ),
         ),
+        */
       ],
     );
   }

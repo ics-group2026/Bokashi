@@ -44,6 +44,8 @@ class SellerSectionWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeDefault),
           child: InkWell(onTap: () {
+            // Chat feature hidden by request: chat navigation disabled.
+            /*
             if(Provider.of<AuthController>(context, listen: false).isLoggedIn()){
               Provider.of<ChatController>(context, listen: false).setUserTypeIndex(context, 1);
               if((order!.orderDetails![0].seller != null && ((order!.orderDetails![0].seller?.shop?.temporaryClose ?? false)))) {
@@ -68,6 +70,7 @@ class SellerSectionWidget extends StatelessWidget {
               }
             }else{
               showModalBottomSheet(backgroundColor: Colors.transparent, context: context, builder: (_)=> const NotLoggedInBottomSheetWidget());}
+            */
             },
               child: Padding(padding: const EdgeInsets.symmetric(vertical: Dimensions.paddingSizeSmall),
                 child: Row(children: [
@@ -82,7 +85,8 @@ class SellerSectionWidget extends StatelessWidget {
                     )
                   ),
                   const Spacer(),
-                  const SizedBox(width: Dimensions.iconSizeDefault, child: CustomAssetImageWidget(Images.storeChatIcon, height: 20, width: 20))
+                  // Chat feature hidden by request: chat icon removed.
+                  // const SizedBox(width: Dimensions.iconSizeDefault, child: CustomAssetImageWidget(Images.storeChatIcon, height: 20, width: 20))
                 ]),
               ),
             ),

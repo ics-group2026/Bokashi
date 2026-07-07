@@ -191,12 +191,15 @@ class _MoreScreenState extends State<MoreScreen> {
                         builder: (context, splashController, _){
                           return Column(children: [
 
+                            // Chat feature hidden by request: inbox menu entry removed.
+                            /*
                             singleVendor?const SizedBox():
                             MenuButtonWidget(image: Images.chats, title: getTranslated('inbox', context),
                               onTap: () {
                                 RouterHelper.getInboxScreenRoute(action: RouteAction.push);
                               },
                             ),
+                            */
 
                             MenuButtonWidget(image: Images.callIcon, title: getTranslated('contact_us', context),
                               onTap: () {
