@@ -66,14 +66,14 @@ PODS:
   - Firebase/Messaging (12.15.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 12.15.0)
-  - firebase_auth (6.5.3):
+  - firebase_auth (6.5.4):
     - Firebase/Auth (= 12.15.0)
     - firebase_core
     - Flutter
   - firebase_core (4.11.0):
     - Firebase/CoreOnly (= 12.15.0)
     - Flutter
-  - firebase_messaging (16.4.0):
+  - firebase_messaging (16.4.1):
     - Firebase/Messaging (= 12.15.0)
     - firebase_core
     - Flutter
@@ -445,9 +445,9 @@ SPEC CHECKSUMS:
   emoji_picker_flutter: 8e50ec5caac456a23a78637e02c6293ea0ac8771
   file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
   Firebase: a8539b633d474fbeb654c7043f9c1649e274045b
-  firebase_auth: 01c08712849ffe8638e412676a88f27994a0012d
+  firebase_auth: b9077bef727b19b519285a98f7b97d2ea78a0d78
   firebase_core: 2f51bd38a4e012634cf229f81dc9e2506df32f1c
-  firebase_messaging: 1e8400bc8e8d835e00e2e9f6dbcc42e160eac5c1
+  firebase_messaging: c8d9730ad2cf85f50f1e16be82ffebcb9a20a792
   FirebaseAppCheckInterop: 5083c9acf65f206832fe659e1c676b7bc3d55e8a
   FirebaseAuth: 6d1d4e5875d93f82e669bee6b05a70a642025b58
   FirebaseAuthInterop: 0778f5f24d6cccd6d67ef45832fe9c67a0b944ea
