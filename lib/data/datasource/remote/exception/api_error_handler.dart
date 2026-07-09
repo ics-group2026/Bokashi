@@ -22,8 +22,7 @@ class ApiErrorHandler {
               errorDescription = "Send timeout";
               break;
             case DioExceptionType.receiveTimeout:
-              errorDescription =
-                  "Receive timeout in connection with API server";
+              errorDescription = "Receive timeout in connection with API server";
               break;
             case DioExceptionType.badResponse:
               switch (error.response!.statusCode) {
@@ -37,8 +36,7 @@ class ApiErrorHandler {
                   }
 
                   if (kDebugMode) {
-                    print(
-                        "=================403=============>>$errorDescription");
+                    print("=================403=============>>$errorDescription");
                   }
 
                   break;
@@ -66,8 +64,7 @@ class ApiErrorHandler {
                   break;
                 case 500:
                   if (kDebugMode) {
-                    print(
-                        "-----------500------------->>${error.response!.data}");
+                    print("-----------500------------->>${error.response!.data}");
                   }
                   errorDescription = 'Internal server error';
                 case 503:
@@ -98,9 +95,6 @@ class ApiErrorHandler {
             case DioExceptionType.unknown:
               errorDescription = "Request to API call limit excited ";
               break;
-            case DioExceptionType.transformTimeout:
-              // TODO: Handle this case.
-              throw UnimplementedError();
           }
         } else {
           errorDescription = "Unexpected error occured";

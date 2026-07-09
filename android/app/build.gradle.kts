@@ -17,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.ics.bokashi"
+    namespace = "com.dr.ahmed.seyam.pharmacy.ics"
     compileSdk = 36
 
     compileOptions {
@@ -34,7 +34,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         multiDexEnabled = true
-        applicationId = "com.ics.bokashi"
+        applicationId = "com.dr.ahmed.seyam.pharmacy.ics"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = flutter.versionCode
