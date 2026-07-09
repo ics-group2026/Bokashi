@@ -51,18 +51,17 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBFlhjxPtSWH5aeEmHeQRPlqkiN6Fd8nds',
-    appId: '1:164733068902:android:d57cf82aaf1bc6caf4efa7',
+    appId: '1:164733068902:android:9e4a642f161d7abcf4efa7',
     messagingSenderId: '164733068902',
     projectId: 'bokashi-pharamacy',
     storageBucket: 'bokashi-pharamacy.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCqmTKWigp8oQSAVrcjoGXIL-3FUpa11z4',
-    appId: '1:164733068902:ios:7f50b88c7ab8fb91f4efa7',
+    appId: '1:164733068902:ios:b8804588dfc80947f4efa7',
     messagingSenderId: '164733068902',
     projectId: 'bokashi-pharamacy',
     storageBucket: 'bokashi-pharamacy.firebasestorage.app',
-    iosBundleId: 'com.ics.bokashi',
+    iosBundleId: 'com.ics.bokashi.app.mobile',
   );
 }

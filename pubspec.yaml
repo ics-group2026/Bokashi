@@ -2,7 +2,7 @@ name: bokashi
 description: A new Flutter setup application for starting a project.
 
 publish_to: 'none'
-version: 1.0.2+3
+version: 1.0.8+13
 environment:
   sdk: ^3.6.2
 
